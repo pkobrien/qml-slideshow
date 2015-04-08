@@ -1,0 +1,9 @@
+module Slideshow
+Clock 1.0 Clock.qml
+Date 1.0 Date.qml
+Footer 1.0 Footer.qml
+Header 1.0 Header.qml
+Presentation 1.0 Presentation.qml
+Slide 1.0 Slide.qml
+SlideNumber 1.0 SlideNumber.qml
+Time 1.0 Time.qml
