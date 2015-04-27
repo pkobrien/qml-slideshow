@@ -26,14 +26,57 @@ SS.Presentation {
         footer.visible: false;
         header.visible: false;
 
+        onVisibleChanged: {
+            if (visible) {
+                cone.increment = -cone.increment;
+                cone.angle = 90;
+                waitForIt.start();
+            } else {
+                waitForIt.stop();
+                goForIt.stop();
+                spin.stop();
+            }
+        }
+
         ConicalGradient {
+            id: cone
+            property int increment: -1
             anchors.fill: parent
-            angle: 120
+            angle: 90
             horizontalOffset: Math.round(parent.width * -0.3)
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "Black" }
                 GradientStop { position: 1.0; color: "White" }
             }
+        }
+
+        Timer {
+            id: spin
+            interval: 100
+            repeat: true
+            onTriggered: cone.angle += cone.increment;
+        }
+
+        Timer {
+            id: goForIt
+            interval: 500
+            repeat: true
+            triggeredOnStart: true
+            onTriggered: {
+                if (spin.running) {
+                    cone.horizontalOffset += cone.increment;
+                    spin.interval = Math.max(spin.interval - 1, 10);
+                } else {
+                    spin.start();
+                }
+            }
+        }
+
+        Timer {
+            id: waitForIt
+            interval: 5000
+            repeat: false
+            onTriggered: goForIt.start();
         }
 
         SS.TitleText {
