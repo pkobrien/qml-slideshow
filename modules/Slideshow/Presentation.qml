@@ -1,5 +1,4 @@
 import QtQuick 2.4
-import QtQuick.Layouts 1.1
 
 Item {
     id: presentation
@@ -9,24 +8,9 @@ Item {
 
     property var activeSlide
     property int activeSlideIndex: 0
-    property var footer
-    property var header
     property int slideCount: 0
     property var slides: []
-
-    property alias slideArea: slideArea
-
-    onFooterChanged: {
-        if (footer) {
-            footer.parent = presentation;
-        }
-    }
-
-    onHeaderChanged: {
-        if (header) {
-            header.parent = presentation;
-        }
-    }
+    property string title: "Presentation Title"
 
     function next() {
         activeSlideIndex = Math.min(activeSlideIndex + 1, slides.length - 1);
@@ -36,14 +20,6 @@ Item {
     function previous() {
         activeSlideIndex = Math.max(activeSlideIndex - 1, 0);
         activeSlide = slides[activeSlideIndex];
-    }
-
-    Item {
-        id: slideArea
-        anchors.bottom: (footer && footer.visible) ? footer.top : presentation.bottom
-        anchors.left: presentation.left
-        anchors.right: presentation.right
-        anchors.top: (header && header.visible) ? header.bottom : presentation.top
     }
 
     Component.onCompleted: {

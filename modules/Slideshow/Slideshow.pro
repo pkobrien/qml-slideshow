@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 DISTFILES += \
     fonts \
     qmldir \
+    Body.qml \
     Clock.qml \
     Date.qml \
     Footer.qml \
@@ -10,7 +11,9 @@ DISTFILES += \
     Presentation.qml \
     Slide.qml \
     SlideNumber.qml \
-    Time.qml
+    Text.qml \
+    Time.qml \
+    TitleText.qml
 
 target.path = $$[QT_INSTALL_QML]/Slideshow
 

@@ -5,10 +5,11 @@ import "." as SS
 Rectangle {
     id: header
 
-    height: Math.round(parent.height * 0.1)
-
     property alias headerText: headerText
+    property alias line: line
     property alias text: headerText.text
+
+    property int margin: 0
 
     anchors.left: parent.left
     anchors.right: parent.right
@@ -17,11 +18,12 @@ Rectangle {
     z: 100
 
     RowLayout {
-        id: headerContent
-        anchors.fill: parent
-        anchors.margins: Math.round(header.height / 3)
+        id: content
 
-        property int textHeight: header.height - anchors.margins * 2
+        anchors.centerIn: parent
+        anchors.margins: header.margin
+
+        property int textHeight: Math.round(header.height - anchors.margins * 2)
 
         Item {
             Layout.fillWidth: true
@@ -29,11 +31,21 @@ Rectangle {
 
         Text {
             id: headerText
-            font.pixelSize: headerContent.textHeight
+            font.pixelSize: content.textHeight
         }
 
         Item {
             Layout.fillWidth: true
         }
     }
+
+    Rectangle {
+        id: line
+        width: content.width
+        height: 2
+        color: "Black"
+        anchors.bottom: header.bottom
+        anchors.horizontalCenter: header.horizontalCenter
+    }
+
 }
