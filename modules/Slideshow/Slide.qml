@@ -4,8 +4,8 @@ import "." as SS
 Rectangle {
     id: slide
 
-    width: 800
-    height: 600
+    width: (presentation) ? presentation.width : 800
+    height: (presentation) ? presentation.height : 600
 
     property alias body: body
     property alias footer: footer
@@ -16,8 +16,6 @@ Rectangle {
     property bool isSlide: true
     property int number: 0
     property var presentation
-
-    anchors.fill: presentation
 
     visible: (slide === presentation.activeSlide)
 
