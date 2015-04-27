@@ -21,6 +21,46 @@ SS.Presentation {
         }
     }
 
+    Item {
+        id: deck1
+
+        App.Slide {
+            body.color: "Red"
+        }
+
+        App.Slide {
+            body.color: "Orange"
+        }
+
+        Item {
+            id: deck2
+
+            App.Slide {
+                body.color: "Yellow"
+            }
+
+            App.Slide {
+                body.color: "Green"
+            }
+
+            App.Slide {
+                body.color: "Blue"
+            }
+        }
+
+        App.Slide {
+            body.color: "Indigo"
+        }
+
+        Item {
+            id: deck3
+
+            App.Slide {
+                body.color: "Violet"
+            }
+        }
+    }
+
     App.Slide {
         Column {
             anchors.centerIn: parent.body
@@ -30,7 +70,8 @@ SS.Presentation {
                 text: "This is some text."
             }
             SS.Text {
-                text: "This is some text with HTML bullets:"
+                text: "This is some text that begins with a paragraph full " +
+                      "of words, and is followed by some HTML bullets:"
             }
             SS.Text {
                 text: "<ul>" +

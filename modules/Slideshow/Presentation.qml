@@ -19,17 +19,23 @@ Item {
         activeSlide = slides[activeSlideIndex];
     }
 
-    Component.onCompleted: {
+    function findSlides(obj) {
         var child;
-        for (var i = 0; i < children.length; i++) {
-            child = children[i];
+        for (var i = 0; i < obj.children.length; i++) {
+            child = obj.children[i];
             if (child.isSlide) {
                 slideCount++;
                 child.number = slideCount;
                 child.presentation = presentation;
                 slides.push(child);
+            } else if (child.children) {
+                findSlides(child);
             }
         }
+    }
+
+    Component.onCompleted: {
+        findSlides(presentation);
         activeSlideIndex = 0;
         activeSlide = slides[activeSlideIndex];
     }
