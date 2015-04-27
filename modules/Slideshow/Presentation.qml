@@ -3,9 +3,6 @@ import QtQuick 2.4
 Item {
     id: presentation
 
-    width: 800
-    height: 600
-
     property var activeSlide
     property int activeSlideIndex: 0
     property int slideCount: 0
