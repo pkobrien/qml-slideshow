@@ -8,15 +8,16 @@ Text {
     font.pixelSize: Math.round(slide.height * .04)
     wrapMode: Text.WordWrap
 
-    Component.onCompleted: {
-        var ancestor = text.parent;
-        while (true) {
-            if (ancestor["isSlide"]) {
-                text.slide = ancestor;
-                break;
-            } else {
-                ancestor = ancestor.parent;
+    function findAncestorSlide(obj) {
+        while (obj.parent) {
+            obj = obj.parent;
+            if (obj.isSlide) {
+                return obj;
             }
         }
+    }
+
+    Component.onCompleted: {
+        text.slide = findAncestorSlide(text);
     }
 }
