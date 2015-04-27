@@ -26,7 +26,7 @@ Rectangle {
 
         height: Math.round(slide.height * 0.09)
         margin: slide.margin
-        text: presentation.title
+        text: (presentation) ? presentation.title : "Presentation Title"
     }
 
     SS.Body {
