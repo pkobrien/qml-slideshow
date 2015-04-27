@@ -9,12 +9,13 @@ Text {
     wrapMode: Text.WordWrap
 
     Component.onCompleted: {
+        var ancestor = text.parent;
         while (true) {
-            if (parent["isSlide"]) {
-                slide = parent;
+            if (ancestor["isSlide"]) {
+                text.slide = ancestor;
                 break;
             } else {
-                parent = parent.parent;
+                ancestor = ancestor.parent;
             }
         }
     }
