@@ -4,8 +4,6 @@ import Slideshow 1.0 as SS
 import "." as App
 
 SS.Presentation {
-    id: presentation
-
     title: "QML Slideshow Tutorial"
 
     App.Slide {
@@ -19,7 +17,7 @@ SS.Presentation {
 
         SS.TitleText {
             anchors.centerIn: parent.body
-            text: presentation.title
+            text: parent.presentation.title
         }
     }
 
