@@ -22,6 +22,7 @@ Rectangle {
         id: content
 
         anchors.fill: parent
+        anchors.verticalCenter: parent.verticalCenter
         anchors.margins: footer.margin
 
         property int textHeight: Math.round(footer.height - anchors.margins * 2)
