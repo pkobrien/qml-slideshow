@@ -11,7 +11,8 @@ Text {
 
     onFormatChanged: {
         if (format.indexOf("%2") !== -1) {
-            text = Qt.binding(function() { return format.arg(current).arg(total) });
+            text = Qt.binding(function()
+                              { return format.arg(current).arg(total) });
         }
     }
 }
