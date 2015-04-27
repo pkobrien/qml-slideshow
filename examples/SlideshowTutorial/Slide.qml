@@ -10,7 +10,7 @@ SS.Slide {
 //    header.line.color: "Gray"
 //    header.line.width: body.width
 
-//    footer.dateText.visible: false
+    footer.dateText.visible: false
 
 //    footer.line.width: slide.width
 }
