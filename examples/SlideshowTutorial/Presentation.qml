@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 import Slideshow 1.0 as SS
 import "." as App
 
@@ -21,48 +22,43 @@ SS.Presentation {
         }
     }
 
-    Item {
-        id: deck1
+    App.Slide {
+        footer.visible: false;
+        header.visible: false;
 
-        App.Slide {
-            body.color: "Red"
-        }
-
-        App.Slide {
-            body.color: "Orange"
-        }
-
-        Item {
-            id: deck2
-
-            App.Slide {
-                body.color: "Yellow"
-            }
-
-            App.Slide {
-                body.color: "Green"
-            }
-
-            App.Slide {
-                body.color: "Blue"
+        ConicalGradient {
+            anchors.fill: parent
+            angle: 120
+            horizontalOffset: Math.round(parent.width * -0.3)
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "Black" }
+                GradientStop { position: 1.0; color: "White" }
             }
         }
 
-        App.Slide {
-            body.color: "Indigo"
+        SS.TitleText {
+            width: slide.body.width * 0.7
+            anchors.right: slide.body.right
+            text: slide.presentation.title
+            horizontalAlignment: Text.AlignRight
+            y: (slide.height / 2 - height)
         }
+    }
 
-        Item {
-            id: deck3
+    App.Slide {
+        body.color: "Red"
+        body.margin: width / 10
 
-            App.Slide {
-                body.color: "Violet"
-            }
+        Rectangle {
+            anchors.fill: parent.body
+            anchors.margins: parent.body.margin
+            color: "Blue"
         }
     }
 
     App.Slide {
         Column {
+            width: parent.body.width
             anchors.centerIn: parent.body
             spacing: parent.margin
 
@@ -70,6 +66,7 @@ SS.Presentation {
                 text: "This is some text."
             }
             SS.Text {
+                width: parent.width
                 text: "This is some text that begins with a paragraph full " +
                       "of words, and is followed by some HTML bullets:"
             }
@@ -100,14 +97,82 @@ SS.Presentation {
 //        }
     }
 
-    App.Slide {
-        body.color: "Red"
-        body.margin: width / 10
+    App.ColorDeck {  }
 
-        Rectangle {
-            anchors.fill: parent.body
-            anchors.margins: parent.body.margin
-            color: "Blue"
+    Item {
+        id: deck
+        property string header: "Inline Nested Slides: ROYGBIV"
+        property int pixelSize: Math.round(parent.height * 0.25)
+
+        App.Slide {
+            header.text: deck.header
+            body.color: "Red"
+            SS.Text {
+                anchors.centerIn: slide.body
+                font.pixelSize: deck.pixelSize
+                text: "Red Again"
+            }
+        }
+
+        App.Slide {
+            header.text: deck.header
+            color: "Orange"
+            radius: deck.pixelSize / 2
+            body.color: "Black"
+            body.radius: deck.pixelSize
+            Rectangle {
+                width: Math.round(Math.min(parent.width, parent.height) * 0.6)
+                height: width
+                radius: width / 2
+                color: "Orange"
+                anchors.centerIn: parent.body
+            }
+            SS.Text {
+                anchors.centerIn: slide.body
+                font.pixelSize: deck.pixelSize / 2
+                text: slide.color
+            }
+        }
+
+        Item {
+            id: deck2
+
+            App.Slide {
+                header.text: deck.header
+                body.color: "Yellow"
+                SS.Text {
+                    anchors.bottom: slide.body.bottom
+                    anchors.right: slide.body.right
+                    color: "Red"
+                    font.pixelSize: Math.round(parent.height * 0.05)
+                    text: "%1 (%2, %3)".arg(slide.body.color).arg(
+                              slide.body.width).arg(slide.body.height)
+                }
+            }
+
+            App.Slide {
+                header.text: deck.header
+                body.color: "Green"
+            }
+
+            App.Slide {
+                header.text: deck.header
+                body.color: "Blue"
+            }
+        }
+
+        App.Slide {
+            header.text: deck.header
+            body.color: "Indigo"
+        }
+
+        Item {
+            id: deck3
+
+            App.Slide {
+                header.text: deck.header
+                body.color: "Violet"
+            }
         }
     }
 
@@ -136,17 +201,17 @@ SS.Presentation {
         footer.slideNumber.format: "Slide %1 of %2"
     }
 
-    App.Slide {
-        body.color: "Green"
-    }
-
-    App.Slide {
-        body.color: "Blue"
-    }
-
     Repeater {
+        id: repeater
+
         model: 10
 
-        App.Slide {  }
+        App.Slide {
+            SS.TitleText {
+                anchors.centerIn: slide.body
+                text: "Repeater Delegate " + (index + 1) +
+                      " of " + repeater.model
+            }
+        }
     }
 }
