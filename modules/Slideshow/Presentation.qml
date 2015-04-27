@@ -9,16 +9,6 @@ Item {
     property var slides: []
     property string title: "Presentation Title"
 
-    function next() {
-        activeSlideIndex = Math.min(activeSlideIndex + 1, slides.length - 1);
-        activeSlide = slides[activeSlideIndex];
-    }
-
-    function previous() {
-        activeSlideIndex = Math.max(activeSlideIndex - 1, 0);
-        activeSlide = slides[activeSlideIndex];
-    }
-
     function findSlides(obj) {
         var child;
         for (var i = 0; i < obj.children.length; i++) {
@@ -32,6 +22,16 @@ Item {
                 findSlides(child);
             }
         }
+    }
+
+    function next() {
+        activeSlideIndex = Math.min(activeSlideIndex + 1, slides.length - 1);
+        activeSlide = slides[activeSlideIndex];
+    }
+
+    function previous() {
+        activeSlideIndex = Math.max(activeSlideIndex - 1, 0);
+        activeSlide = slides[activeSlideIndex];
     }
 
     Component.onCompleted: {
