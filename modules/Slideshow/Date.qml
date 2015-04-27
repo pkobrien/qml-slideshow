@@ -12,5 +12,6 @@ Text {
     Clock {
         id: clock
         interval: updateInterval
+        running: (date.visible)
     }
 }
