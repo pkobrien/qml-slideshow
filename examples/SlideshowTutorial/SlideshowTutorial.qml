@@ -1,67 +1,98 @@
 import QtQuick 2.4
+import QtQuick.Layouts 1.1
 import Slideshow 1.0 as SS
+import "." as App
 
 SS.Presentation {
     id: presentation
 
-    Rectangle {
-        anchors.fill: parent
+    title: "QML Slideshow Tutorial"
+
+    App.Slide {
+        footer.visible: false;
+        header.visible: false;
+
         gradient: Gradient {
             GradientStop { position: 0.0; color: "White" }
             GradientStop { position: 1.0; color: "Silver" }
         }
-    }
 
-    header: SS.Header {
-        text: "QML Slideshow Tutorial"
-    }
-
-    footer: SS.Footer {
-        dateText.visible: false
-    }
-
-    SS.Slide {
-//        anchors.margins: 0
-
-        Text {
-            anchors.fill: parent
-            anchors.margins: Math.round(parent.height * .1)
-            font.pixelSize: Math.round(parent.height * .1)
-            horizontalAlignment: Text.AlignHCenter
-            text: "QML Slideshow Tutorial"
-            verticalAlignment: Text.AlignVCenter
-            wrapMode: Text.WordWrap
-        }
-
-//        SS.Date { format: Locale.LongFormat }
-
-//        SS.Time { format: Locale.LongFormat }
-
-        onVisibleChanged: {
-            presentation.header.visible = !visible;
-            presentation.footer.visible = !visible;
+        SS.TitleText {
+            anchors.centerIn: parent.body
+            text: presentation.title
         }
     }
 
-    SS.Slide {
-        color: "White"
+//    App.Slide {
+////        SS.Text {
+////            anchors.centerIn: parent.body
+////            text: "This is some text with bullets:"
+////        }
+////        SS.Text {
+////            anchors.centerIn: parent.body
+////            text: "<ul>" +
+////                  "<li>One</li>" +
+////                  "<li>Two</li>" +
+////                  "<li>Three</li>" +
+////                  "</ul>"
+////        }
+//        ColumnLayout {
+//            anchors.centerIn: parent.body
+//            implicitHeight: childrenRect.height
+//            implicitWidth: childrenRect.width
+//            spacing: parent.margin
+//            SS.Text {
+//                text: "This is some text with bullets:"
+//                Layout.fillWidth: true
+//            }
+////            SS.Text {
+////                text: "<ul>" +
+////                      "<li>One</li>" +
+////                      "<li>Two</li>" +
+////                      "<li>Three</li>" +
+////                      "</ul>"
+////            }
+//        }
+//    }
+
+    App.Slide {
+        body.color: "Red"
+        body.margin: width / 10
+
+        Rectangle {
+            anchors.fill: parent.body
+            anchors.margins: parent.body.margin
+            color: "Blue"
+        }
     }
 
-    SS.Slide {
-        color: "Red"
+    App.Slide {
+        body.visible: false
+
+        header.text: "Easy Header & Footer Customization"
+        header.color: "DarkGray"
+        header.headerText.font.bold: true
+        header.headerText.color: "White"
+        header.line.visible: false
+
+        footer.color: "Silver"
+        footer.line.width: footer.parent.width
+        footer.dateText.visible: true
+        footer.dateText.format: Locale.LongFormat
+        footer.timeText.format: Locale.LongFormat
     }
 
-    SS.Slide {
-        color: "Green"
+    App.Slide {
+        body.color: "Green"
     }
 
-    SS.Slide {
-        color: "Blue"
+    App.Slide {
+        body.color: "Blue"
     }
 
     Repeater {
         model: 10
 
-        SS.Slide {  }
+        App.Slide {  }
     }
 }
