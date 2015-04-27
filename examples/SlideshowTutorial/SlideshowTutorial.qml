@@ -23,19 +23,25 @@ SS.Presentation {
         }
     }
 
-//    App.Slide {
-////        SS.Text {
-////            anchors.centerIn: parent.body
-////            text: "This is some text with bullets:"
-////        }
-////        SS.Text {
-////            anchors.centerIn: parent.body
-////            text: "<ul>" +
-////                  "<li>One</li>" +
-////                  "<li>Two</li>" +
-////                  "<li>Three</li>" +
-////                  "</ul>"
-////        }
+    App.Slide {
+        Column {
+            anchors.centerIn: parent.body
+            spacing: parent.margin
+
+            SS.Text {
+                text: "This is some text."
+            }
+            SS.Text {
+                text: "This is some text with HTML bullets:"
+            }
+            SS.Text {
+                text: "<ul>" +
+                      "<li>One</li>" +
+                      "<li>Two</li>" +
+                      "<li>Three</li>" +
+                      "</ul>"
+            }
+        }
 //        ColumnLayout {
 //            anchors.centerIn: parent.body
 //            implicitHeight: childrenRect.height
@@ -53,7 +59,7 @@ SS.Presentation {
 ////                      "</ul>"
 ////            }
 //        }
-//    }
+    }
 
     App.Slide {
         body.color: "Red"
@@ -70,16 +76,25 @@ SS.Presentation {
         body.visible: false
 
         header.text: "Easy Header & Footer Customization"
-        header.color: "DarkGray"
+        header.gradient: Gradient {
+            GradientStop { position: 0.0; color: "Black" }
+            GradientStop { position: 1.0; color: "Blue" }
+        }
+        header.color: "Black" // Default is transparent which hides gradient.
         header.headerText.font.bold: true
         header.headerText.color: "White"
+        header.height: Math.round(height * 0.18)
         header.line.visible: false
+        header.margin: margin * 3
 
-        footer.color: "Silver"
-        footer.line.width: footer.parent.width
+        footer.color: "Yellow"
+        footer.line.width: width
         footer.dateText.visible: true
         footer.dateText.format: Locale.LongFormat
         footer.timeText.format: Locale.LongFormat
+        footer.timeText.updateInterval: 60
+        footer.timeText.font.bold: true
+        footer.slideNumber.format: "Slide %1 of %2"
     }
 
     App.Slide {
