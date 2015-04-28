@@ -8,6 +8,48 @@ SS.Presentation {
     title: "QML Slideshow Tutorial"
 
     App.Slide {
+//        id: slide
+
+        text: slide.numbering.total + " Slides"
+
+        bottomLeft: GridLayout {
+            implicitHeight: childrenRect.height
+            implicitWidth: childrenRect.width
+//            width: slide.content.width
+            columns: 2
+            Rectangle {
+                width: slide.content.width / 6
+                height: width
+                color: "Orange"
+            }
+            Rectangle {
+                width: slide.content.width / 8
+                height: width
+                color: "Yellow"
+            }
+        }
+
+        bottomRight: Rectangle {
+            width: slide.content.width / 8
+            height: width
+            color: "Green"
+        }
+
+        Rectangle {
+            width: slide.content.width / 4
+            height: width
+            color: "Red"
+        }
+        Rectangle {
+            width: slide.content.width / 8
+            height: width
+            color: "Blue"
+        }
+    }
+
+/*
+
+    App.Slide {
         body.color: "Transparent"
         footer.visible: false;
         header.visible: false;
@@ -18,7 +60,7 @@ SS.Presentation {
         }
 
         SS.TitleText {
-            anchors.centerIn: slide.body
+            anchors.centerIn: slide
             text: slide.presentation.title
         }
     }
@@ -176,46 +218,46 @@ Are bullets worth fighting for?
         }
     }
 
-    App.Slide {
-        Column {
-            width: parent.body.width
-            anchors.centerIn: parent.body
-            spacing: parent.margin
-
-            SS.Text {
-                text: "This is some text."
-            }
-            SS.Text {
-                width: parent.width
-                text: "This is some text that begins with a paragraph full " +
-                      "of words, and is followed by some HTML bullets:"
-            }
-            SS.Text {
-                text: "<ul>" +
-                      "<li>One</li>" +
-                      "<li>Two</li>" +
-                      "<li>Three</li>" +
-                      "</ul>"
-            }
-        }
-//        ColumnLayout {
+//    App.Slide {
+//        Column {
+//            width: parent.body.width
 //            anchors.centerIn: parent.body
-//            implicitHeight: childrenRect.height
-//            implicitWidth: childrenRect.width
 //            spacing: parent.margin
+
 //            SS.Text {
-//                text: "This is some text with bullets:"
-//                Layout.fillWidth: true
+//                text: "This is some text."
 //            }
-////            SS.Text {
-////                text: "<ul>" +
-////                      "<li>One</li>" +
-////                      "<li>Two</li>" +
-////                      "<li>Three</li>" +
-////                      "</ul>"
-////            }
+//            SS.Text {
+//                width: parent.width
+//                text: "This is some text that begins with a paragraph full " +
+//                      "of words, and is followed by some HTML bullets:"
+//            }
+//            SS.Text {
+//                text: "<ul>" +
+//                      "<li>One</li>" +
+//                      "<li>Two</li>" +
+//                      "<li>Three</li>" +
+//                      "</ul>"
+//            }
 //        }
-    }
+////        ColumnLayout {
+////            anchors.centerIn: parent.body
+////            implicitHeight: childrenRect.height
+////            implicitWidth: childrenRect.width
+////            spacing: parent.margin
+////            SS.Text {
+////                text: "This is some text with bullets:"
+////                Layout.fillWidth: true
+////            }
+//////            SS.Text {
+//////                text: "<ul>" +
+//////                      "<li>One</li>" +
+//////                      "<li>Two</li>" +
+//////                      "<li>Three</li>" +
+//////                      "</ul>"
+//////            }
+////        }
+//    }
 
     App.ColorDeck {  }
 
@@ -248,18 +290,18 @@ Are bullets worth fighting for?
             radius: deck.pixelSize / 2
             body.color: "Black"
             body.radius: deck.pixelSize
-            Rectangle {
-                width: Math.round(Math.min(parent.width, parent.height) * 0.6)
-                height: width
-                radius: width / 2
-                color: "Orange"
-                anchors.centerIn: parent.body
-            }
-            SS.Text {
-                anchors.centerIn: slide.body
-                font.pixelSize: deck.pixelSize / 2
-                text: slide.color
-            }
+//            Rectangle {
+//                width: Math.round(Math.min(parent.width, parent.height) * 0.6)
+//                height: width
+//                radius: width / 2
+//                color: "Orange"
+//                anchors.centerIn: parent.body
+//            }
+//            SS.Text {
+//                anchors.centerIn: slide.body
+//                font.pixelSize: deck.pixelSize / 2
+//                text: slide.color
+//            }
         }
 
         Item {
@@ -341,4 +383,5 @@ Are bullets worth fighting for?
             }
         }
     }
+// */
 }

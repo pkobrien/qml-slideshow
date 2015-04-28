@@ -12,6 +12,11 @@ Rectangle {
     property alias footer: footer
     property alias header: header
 
+    property alias bottomLeft: body.bottomLeft
+    property alias bottomRight: body.bottomRight
+    property alias topLeft: body.topLeft
+    property alias topRight: body.topRight
+
     property alias date: date
     property alias numbering: slideNumber
     property alias time: time
@@ -21,12 +26,29 @@ Rectangle {
     property var presentation
 
     property string text
+    property alias textColor: body.textColor
+    property alias textHeight: body.textHeight
 
     readonly property bool isSlide: true
 
     visible: (slide === presentation.activeSlide)
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
+
+    function moveUserChildrenToBodyRow() {
+        // Make a copy first, since we change their parent value.
+        var userChildren = [];
+        var i = 3;  // Skip existing children: header, body, footer.
+        for (i; i < children.length; i++) {
+            userChildren.push(children[i]);
+        }
+        for (i = 0; i < userChildren.length; i++) {
+            var child = userChildren[i];
+            child.parent = body.row;
+        }
+    }
+
+    Component.onCompleted: moveUserChildrenToBodyRow();
 
     SS.Header {
         id: header

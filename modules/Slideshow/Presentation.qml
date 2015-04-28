@@ -3,6 +3,7 @@ import QtQuick 2.4
 Item {
     id: presentation
 
+    property alias slide: presentation.activeSlide
     property var activeSlide
     property int activeSlideIndex: 0
     property int slideCount: 0

@@ -5,7 +5,7 @@ import "." as App
 Item {
     id: deck
     property string header: "External Nested Slides: ROYGBIV"
-    property int pixelSize: Math.round(parent.height * 0.2)
+    property int textHeight: Math.floor(parent.height * 0.2)
     
     Repeater {
         model: ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
@@ -13,11 +13,9 @@ Item {
         App.Slide {
             header.text: deck.header
             body.color: modelData
-            SS.Text {
-                anchors.centerIn: slide.body
-                font.pixelSize: deck.pixelSize
-                text: modelData
-            }
+            text: modelData
+            textHeight: deck.textHeight
+            textColor: Qt.darker(body.color)
         }
     }
 }
