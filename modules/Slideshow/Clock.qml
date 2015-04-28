@@ -7,5 +7,6 @@ Timer {
     
     interval: 100
     repeat: true
+    triggeredOnStart: true
     onTriggered: now = new Date();
 }

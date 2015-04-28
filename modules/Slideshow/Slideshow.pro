@@ -4,6 +4,7 @@ DISTFILES += \
     fonts \
     qmldir \
     Body.qml \
+    Box.qml \
     Clock.qml \
     Date.qml \
     Footer.qml \

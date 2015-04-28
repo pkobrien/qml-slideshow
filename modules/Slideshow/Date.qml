@@ -1,17 +1,17 @@
 import QtQuick 2.4
 
-Text {
+QtObject {
     id: date
+
+    readonly property string text: __clock.now.toLocaleDateString(locale, format)
 
     property var format: Locale.ShortFormat
     property var locale: Qt.locale()
     property int updateInterval: 60000
+    property bool updateWhen: false
 
-    text: clock.now.toLocaleDateString(locale, format)
-
-    Clock {
-        id: clock
-        interval: updateInterval
-        running: (date.visible)
+    property var __clock: Clock {
+        interval: date.updateInterval
+        running: date.updateWhen
     }
 }

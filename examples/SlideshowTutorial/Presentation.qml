@@ -8,6 +8,7 @@ SS.Presentation {
     title: "QML Slideshow Tutorial"
 
     App.Slide {
+        body.color: "Transparent"
         footer.visible: false;
         header.visible: false;
 
@@ -19,6 +20,80 @@ SS.Presentation {
         SS.TitleText {
             anchors.centerIn: slide.body
             text: slide.presentation.title
+        }
+    }
+
+    App.Slide {
+        text: "This is the simplest slide you can create."
+    }
+
+    App.Slide {
+        text: "
+This is also a simple slide, only it has lots of text. Even though it has a
+lot of text, the text will wrap at word boundaries so it all fits inside
+the body of the slide, up to a point...
+"
+    }
+
+    App.Slide {
+        text: "It will even do text.trim().split(\"\\n\").join(\" \") for you."
+    }
+
+    App.Slide {
+        Text {
+//            anchors.centerIn: parent.body
+            text: "QtQuick Text component with no modfication."
+        }
+    }
+
+    App.Slide {
+        Text {
+            width: parent.body.width
+            anchors.verticalCenter: parent.body.verticalCenter
+            anchors.horizontalCenter: parent.body.horizontalCenter
+            font.pixelSize: parent.height * 0.07
+//            horizontalAlignment: Text.AlignHCenter
+            text: "
+Qualities of a good system:
+* Simplicity
+* Flexibility
+* Power
+".trim()
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    App.Slide {
+        Text {
+            anchors.fill: parent.body
+            font.pixelSize: parent.height * 0.07
+            text: "
+Are asterisks as good as bullets?
+* Yes
+* No
+* Sometimes
+".trim()
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    App.Slide {
+        Text {
+            anchors.fill: parent.body
+            font.pixelSize: parent.height * 0.07
+            text: "
+Are bullets worth fighting for?
+* No
+* Yes
+* Depends
+".trim()
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    App.Slide {
+        Text {
+            width: parent.body.width
         }
     }
 
@@ -81,10 +156,12 @@ SS.Presentation {
 
         SS.TitleText {
             width: slide.body.width * 0.7
-            anchors.right: slide.body.right
-            text: slide.presentation.title
-            horizontalAlignment: Text.AlignRight
             y: (slide.height / 2 - height)
+            anchors.right: slide.body.right
+            horizontalAlignment: Text.AlignRight
+            style: Text.Sunken
+            styleColor: "White"
+            text: slide.presentation.title
         }
     }
 
@@ -159,6 +236,14 @@ SS.Presentation {
 
         App.Slide {
             header.text: deck.header
+            header.color: "Transparent"
+            footer.color: "Transparent"
+            header.line.visible: false
+            footer.line.visible: false
+            footer.leftText: ""
+            footer.text: numbering.text
+            numbering.format: "Slide %1 is " + color + ", also known as Orange"
+            footer.rightText: ""
             color: "Orange"
             radius: deck.pixelSize / 2
             body.color: "Black"
@@ -227,21 +312,20 @@ SS.Presentation {
             GradientStop { position: 0.0; color: "Black" }
             GradientStop { position: 1.0; color: "Blue" }
         }
-        header.color: "Black" // Default is transparent which hides gradient.
-        header.headerText.font.bold: true
-        header.headerText.color: "White"
-        header.height: Math.round(height * 0.18)
+        header.font.bold: true
+        header.textColor: "White"
+        header.textHeight: Math.floor(height * 0.07)
         header.line.visible: false
-        header.margin: margin * 3
+        header.margin: margin * 2
 
         footer.color: "Yellow"
         footer.line.width: width
-        footer.dateText.visible: true
-        footer.dateText.format: Locale.LongFormat
-        footer.timeText.format: Locale.LongFormat
-        footer.timeText.updateInterval: 60
-        footer.timeText.font.bold: true
-        footer.slideNumber.format: "Slide %1 of %2"
+//        footer.dateText.visible: true
+//        footer.dateText.format: Locale.LongFormat
+//        footer.timeText.format: Locale.LongFormat
+//        footer.timeText.updateInterval: 60
+//        footer.timeText.font.bold: true
+//        footer.slideNumber.format: "Slide %1 of %2"
     }
 
     Repeater {

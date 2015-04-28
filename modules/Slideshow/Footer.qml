@@ -1,62 +1,37 @@
 import QtQuick 2.4
-import QtQuick.Layouts 1.1
 import "." as SS
 
-Rectangle {
+SS.Box {
     id: footer
 
-    property alias dateText: dateText
-    property alias line: line
-    property alias slideNumber: slideNumber
-    property alias timeText: timeText
+    property alias leftText: leftContentText.text
+    property alias rightText: rightContentText.text
 
-    property int margin: 0
+    property alias line: line
+
+    height: textHeight + margin * 2
 
     anchors.bottom: parent.bottom
     anchors.left: parent.left
     anchors.right: parent.right
-    color: "transparent"
-    z: 100
 
-    RowLayout {
-        id: content
+    Text {
+        id: leftContentText
+        anchors.left: content.left
+        anchors.verticalCenter: content.verticalCenter
+        font.pixelSize: textHeight
+    }
 
-        anchors.fill: parent
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.margins: footer.margin
-
-        property int textHeight: Math.round(footer.height - anchors.margins * 2)
-
-        SS.Date {
-            id: dateText
-            font.pixelSize: content.textHeight
-        }
-
-        Item {
-            visible: dateText.visible
-            Layout.fillWidth: true
-        }
-
-        SS.Time {
-            id: timeText
-            font.pixelSize: content.textHeight
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
-
-        SS.SlideNumber {
-            id: slideNumber
-            current: footer.parent.presentation.activeSlide.number
-            total: footer.parent.presentation.slideCount
-            font.pixelSize: content.textHeight
-        }
+    Text {
+        id: rightContentText
+        anchors.right: content.right
+        anchors.verticalCenter: content.verticalCenter
+        font.pixelSize: textHeight
     }
 
     Rectangle {
         id: line
-        width: content.width
+        width: footer.content.width
         height: 1
         color: "Black"
         anchors.top: footer.top

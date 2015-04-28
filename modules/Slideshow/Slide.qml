@@ -8,23 +8,32 @@ Rectangle {
     height: (presentation) ? presentation.height : 600
 
     property alias body: body
+    property alias content: body.content
     property alias footer: footer
     property alias header: header
 
-    property int margin: Math.round(slide.height * 0.02)
+    property alias date: date
+    property alias numbering: slideNumber
+    property alias time: time
 
-    property bool isSlide: true
+    property int margin: Math.floor(slide.height * 0.02)
     property int number: 0
     property var presentation
 
+    property string text
+
+    readonly property bool isSlide: true
+
     visible: (slide === presentation.activeSlide)
+
+    onTextChanged: body.text = text.trim().split("\n").join(" ");
 
     SS.Header {
         id: header
 
-        height: Math.round(slide.height * 0.09)
         margin: slide.margin
         text: (presentation) ? presentation.title : "Presentation Title"
+        textHeight: Math.floor(slide.height * 0.04)
     }
 
     SS.Body {
@@ -35,12 +44,32 @@ Rectangle {
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
         margin: slide.margin
+        textHeight: Math.floor(slide.height * 0.06)
     }
 
     SS.Footer {
         id: footer
 
-        height: Math.round(slide.height * 0.07)
+        leftText: date.text
+        text: time.text
+        rightText: numbering.text
         margin: slide.margin
+        textHeight: Math.floor(slide.height * 0.03)
+    }
+
+    SS.Date {
+        id: date
+        updateWhen: (slide.visible)
+    }
+
+    SS.Time {
+        id: time
+        updateWhen: (slide.visible)
+    }
+
+    SS.SlideNumber {
+        id: slideNumber
+        __current: slide.number
+        __total: (presentation) ? presentation.slideCount : 0
     }
 }
