@@ -4,15 +4,21 @@ import "." as SS
 Rectangle {
     id: box
 
+    property alias centralText: centralText
     property alias content: content
-    property alias contentText: centerContentText
-    property alias font: centerContentText.font
+    property alias font: centralText.font
     property alias row: row
-    property alias text: centerContentText.text
-    property alias textColor: centerContentText.color
-    property alias textHeight: centerContentText.font.pixelSize
+    property alias text: centralText.text
+    property alias textColor: centralText.color
+    property alias textHeight: centralText.font.pixelSize
 
     property int margin: 0
+
+    Text {
+        id: centralText
+        anchors.horizontalCenter: content.horizontalCenter
+        anchors.verticalCenter: content.verticalCenter
+    }
 
     Rectangle {
         id: content
@@ -20,12 +26,6 @@ Rectangle {
         anchors.fill: box
         anchors.margins: box.margin
         color: "Transparent"
-    }
-
-    Text {
-        id: centerContentText
-        anchors.horizontalCenter: content.horizontalCenter
-        anchors.verticalCenter: content.verticalCenter
     }
 
     Row {

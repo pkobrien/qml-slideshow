@@ -8,6 +8,7 @@ Rectangle {
     height: (presentation) ? presentation.height : 600
 
     property alias body: body
+//    property alias centralText: body.centralText
     property alias content: body.content
     property alias footer: footer
     property alias header: header

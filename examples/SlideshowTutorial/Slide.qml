@@ -16,9 +16,6 @@ SS.Slide {
 
 //    footer.rightText: numbering.text
 
-//    body.anchors.bottomMargin: 0
-//    body.anchors.topMargin: 0
-
 //    header.line.color: "Gray"
 //    header.line.width: body.width
 

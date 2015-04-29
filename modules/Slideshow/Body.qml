@@ -4,9 +4,10 @@ import "." as SS
 SS.Box {
     id: body
 
-    contentText.horizontalAlignment: Text.AlignHCenter
-    contentText.width: content.width
-    contentText.wrapMode: Text.WordWrap
+    centralText.horizontalAlignment: (centralText.lineCount > 1) ?
+                                     Text.AlignLeft : Text.AlignHCenter
+    centralText.width: content.width
+    centralText.wrapMode: Text.WordWrap
 
     property var bottomLeft
     property var bottomRight

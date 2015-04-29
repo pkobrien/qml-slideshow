@@ -12,22 +12,22 @@ SS.Presentation {
 
         text: slide.numbering.total + " Slides"
 
-        bottomLeft: GridLayout {
-            implicitHeight: childrenRect.height
-            implicitWidth: childrenRect.width
-//            width: slide.content.width
-            columns: 2
-            Rectangle {
-                width: slide.content.width / 6
-                height: width
-                color: "Orange"
-            }
-            Rectangle {
-                width: slide.content.width / 8
-                height: width
-                color: "Yellow"
-            }
-        }
+//        bottomLeft: GridLayout {
+//            implicitHeight: childrenRect.height
+//            implicitWidth: childrenRect.width
+////            width: slide.content.width
+//            columns: 2
+//            Rectangle {
+//                width: slide.content.width / 6
+//                height: width
+//                color: "Orange"
+//            }
+//            Rectangle {
+//                width: slide.content.width / 8
+//                height: width
+//                color: "Yellow"
+//            }
+//        }
 
         bottomRight: Rectangle {
             width: slide.content.width / 8
@@ -47,8 +47,6 @@ SS.Presentation {
         }
     }
 
-/*
-
     App.Slide {
         body.color: "Transparent"
         footer.visible: false;
@@ -59,10 +57,13 @@ SS.Presentation {
             GradientStop { position: 1.0; color: "Silver" }
         }
 
-        SS.TitleText {
-            anchors.centerIn: slide
-            text: slide.presentation.title
-        }
+        text: slide.presentation.title
+        textHeight: Math.floor(slide.height * 0.10)
+
+//        SS.TitleText {
+//            anchors.centerIn: slide
+//            text: slide.presentation.title
+//        }
     }
 
     App.Slide {
@@ -78,15 +79,20 @@ the body of the slide, up to a point...
     }
 
     App.Slide {
-        text: "It will even do text.trim().split(\"\\n\").join(\" \") for you."
+        text: "
+It will even do text.trim().split(\"\\n\").join(\" \") for you.
+And set the horizontal alignment when the line count is greater than one,
+switching from centered to left aligned.
+"
     }
 
     App.Slide {
         Text {
-//            anchors.centerIn: parent.body
             text: "QtQuick Text component with no modfication."
         }
     }
+
+    /*
 
     App.Slide {
         Text {
