@@ -26,10 +26,6 @@ the header, footer, font, margins, etc. are all default values.
 "
     }
 
-    App.HeaderBodyFooterDiagramSlide {  }
-
-    App.HBFTextDiagramSlide {  }
-
     SS.Slide {
         title: "Simple Slide"
         text: "
@@ -65,6 +61,10 @@ Did you notice anything different on that last slide? Or the next one?"
         text: "This slide also changes the font family to Roboto Condensed."
     }
 
+    App.HeaderBodyFooterDiagramSlide {  }
+
+    App.HBFTextDiagramSlide {  }
+
     App.Slide {
         title: "Children Are Added To A Row"
         Text {
@@ -76,61 +76,44 @@ Did you notice anything different on that last slide? Or the next one?"
 
     App.ColorDeck {  }
 
+    App.Slide {
+        body.margin: margin * 5
+        body.text: "
+Qualities of a good system:
+
+    * Simplicity
+    * Flexibility
+    * Power
+".trim()
+    }
+
+    App.Slide {
+        body.margin: margin * 5
+        body.text: "
+Are asterisks as good as bullets?
+
+    * Yes
+    * No
+    * Sometimes
+".trim()
+    }
+
+    App.Slide {
+        body.margin: margin * 5
+        body.text: "
+Are bullets worth fighting for? Do they really make things better? Really? " +
+"How hard would you fight for them?
+
+    * Valiantly
+    * Cowardly
+    * Depends
+".trim()
+    }
+
     /*
 
     App.Slide {
-        Text {
-            width: parent.body.width
-            anchors.verticalCenter: parent.body.verticalCenter
-            anchors.horizontalCenter: parent.body.horizontalCenter
-            font.pixelSize: parent.height * 0.07
-//            horizontalAlignment: Text.AlignHCenter
-            text: "
-Qualities of a good system:
-* Simplicity
-* Flexibility
-* Power
-".trim()
-            wrapMode: Text.WordWrap
-        }
-    }
-
-    App.Slide {
-        Text {
-            anchors.fill: parent.body
-            font.pixelSize: parent.height * 0.07
-            text: "
-Are asterisks as good as bullets?
-* Yes
-* No
-* Sometimes
-".trim()
-            wrapMode: Text.WordWrap
-        }
-    }
-
-    App.Slide {
-        Text {
-            anchors.fill: parent.body
-            font.pixelSize: parent.height * 0.07
-            text: "
-Are bullets worth fighting for?
-* No
-* Yes
-* Depends
-".trim()
-            wrapMode: Text.WordWrap
-        }
-    }
-
-    App.Slide {
-        Text {
-            width: parent.body.width
-        }
-    }
-
-    App.Slide {
-        body.color: "Red"
+        body.content.color: "Red"
         body.margin: width / 10
 
         Rectangle {

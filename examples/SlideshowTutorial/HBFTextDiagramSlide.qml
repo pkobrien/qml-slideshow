@@ -17,8 +17,7 @@ SS.Slide {
     header.rightText: "header.rightText"
 
     body.border.width: 2
-    body.text: "
-text (aka, body.text with width: content.width and wrapMode: Text.WordWrap)"
+    text: "text (aka slide.text - updates body.text and adds functionality)"
 
 //    body.content.border.width: 2
 //    body.text: "body.content"
