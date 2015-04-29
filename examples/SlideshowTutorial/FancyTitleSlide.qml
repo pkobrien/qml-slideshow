@@ -30,6 +30,7 @@ App.Slide {
         width: slide.width * 0.7
         y: (slide.height / 2 - height)
         anchors.right: parent.right
+        font.family: slide.fontFamily
         font.pixelSize: slide.units(14)
         horizontalAlignment: Text.AlignRight
         style: Text.Sunken

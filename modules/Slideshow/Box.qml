@@ -6,8 +6,8 @@ Rectangle {
 
     property alias content: content
     property alias font: centralText.font
+    property alias grid: grid
     property real margin: 0
-    property alias row: row
     property alias text: centralText.text
     property alias textColor: centralText.color
     property real textHeight
@@ -30,8 +30,8 @@ Rectangle {
         color: "Transparent"
     }
 
-    Row {
-        id: row
+    Grid {
+        id: grid
 
         anchors.fill: box
         anchors.margins: __slide.units(box.margin)

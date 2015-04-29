@@ -10,6 +10,7 @@ Rectangle {
     property alias body: body
     property alias content: body.content
     property alias footer: footer
+    property alias grid: body.grid
     property alias header: header
 
     property alias bottomLeft: body.bottomLeft
@@ -37,15 +38,14 @@ Rectangle {
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
 
-    function moveUserChildrenToBodyRow() {
-        // Make a copy first, since we change their parent value.
-        var child;
-        var i;
+    function __moveUserDefinedChildrenToBodyGrid() {
+        // Copy children to a new list, since we change their parent value.
+        var child, i;
         var userChildren = [];
-        // Skip existing children: header, body, footer.
         for (i = 0; i < children.length; i++) {
             child = children[i];
             switch (child) {
+                // Skip existing children: header, body, footer.
                 case header: case body: case footer:
                     continue;
             }
@@ -53,7 +53,7 @@ Rectangle {
         }
         for (i = 0; i < userChildren.length; i++) {
             child = userChildren[i];
-            child.parent = body.row;
+            child.parent = body.grid;
         }
     }
 
@@ -61,7 +61,7 @@ Rectangle {
         return Math.floor(slide.height * (percent / 100))
     }
 
-    Component.onCompleted: moveUserChildrenToBodyRow();
+    Component.onCompleted: __moveUserDefinedChildrenToBodyGrid();
 
     SS.Body {
         id: body

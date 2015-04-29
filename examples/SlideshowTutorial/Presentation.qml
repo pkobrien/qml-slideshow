@@ -16,7 +16,7 @@ SS.Presentation {
     App.FancyTitleSlide {  }
 
     SS.Slide {
-        text: "This is the simplest slide you can create."
+        text: "This is the simplest type of slide you can create."
     }
 
     SS.Slide {
@@ -27,7 +27,7 @@ the header, footer, font, margins, etc. are all default values.
     }
 
     SS.Slide {
-        title: "Simple Slide"
+        title: "Simple Slide, Lots Of Text"
         text: "
 This is also a simple slide, only it has lots of text. Even though it has a
 lot of text, the text will wrap at word boundaries so it all fits inside
@@ -52,7 +52,8 @@ Did you notice anything different on that last slide? Or the next one?"
 
     App.Slide {
         title: "Customizing Slide Defaults"
-        text: "The difference was in the use of a custom base slide."
+        text: "
+The difference was in the use of a custom base slide with a modified footer."
     }
 
     App.Slide {
@@ -66,11 +67,16 @@ Did you notice anything different on that last slide? Or the next one?"
     App.HBFTextDiagramSlide {  }
 
     App.Slide {
-        title: "Children Are Added To A Row"
+        id: slide
+        title: "Children Are Magically Added To A Grid"
         Text {
-            text: "QtQuick Text component with no modfication."
+            font.family: slide.fontFamily
+            font.pixelSize: slide.units(slide.textHeight)
+            text: "QtQuick Text component with minimal modification."
         }
     }
+
+    App.RandomlyColoredGrid {  }
 
     App.Squares {  }
 

@@ -8,5 +8,5 @@ import "." as App
 App.Slide {
     id: slide
 
-    title: "New Slide"
+    title: "Under Construction"
 }
