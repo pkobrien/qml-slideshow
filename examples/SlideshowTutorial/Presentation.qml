@@ -7,8 +7,6 @@ import "." as App
 SS.Presentation {
     title: "QML Slideshow Tutorial"
 
-    App.HeaderBodyFooterDiagramSlide {  }
-
 //    App.Slide { }
 
     App.DevelopmentSlide {  }
@@ -29,6 +27,8 @@ the header, footer, font, margins, etc. are all default values.
     }
 
     App.HeaderBodyFooterDiagramSlide {  }
+
+    App.HBFTextDiagramSlide {  }
 
     SS.Slide {
         title: "Simple Slide"

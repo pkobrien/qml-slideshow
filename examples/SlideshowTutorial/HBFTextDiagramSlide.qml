@@ -7,16 +7,18 @@ import "." as App
 SS.Slide {
     id: slide
     
-    fontFamily: "Roboto Slab"
+    fontFamily: "Roboto Condensed"
 
     header.border.width: 2
-    header.font.bold: true
     header.line.visible: false
 
-    header.text: "header"
+    header.leftText: "header.leftText"
+    header.text: "header.text"
+    header.rightText: "header.rightText"
 
     body.border.width: 2
-    body.text: "body"
+    body.text: "
+text (aka, body.text with width: content.width and wrapMode: Text.WordWrap)"
 
 //    body.content.border.width: 2
 //    body.text: "body.content"
@@ -24,7 +26,7 @@ SS.Slide {
     footer.border.width: 2
     footer.line.visible: false
 
-    footer.leftText: ""
-    footer.text: "footer"
-    footer.rightText: ""
+    footer.leftText: "footer.leftText"
+    footer.text: "footer.text"
+    footer.rightText: "footer.rightText"
 }
