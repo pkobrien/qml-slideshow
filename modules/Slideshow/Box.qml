@@ -4,7 +4,6 @@ import "." as SS
 Rectangle {
     id: box
 
-    property alias centralText: centralText
     property alias content: content
     property alias font: centralText.font
     property alias row: row
@@ -13,6 +12,8 @@ Rectangle {
     property alias textHeight: centralText.font.pixelSize
 
     property int margin: 0
+
+    property alias __centralText: centralText
 
     Text {
         id: centralText

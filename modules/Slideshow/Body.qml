@@ -4,15 +4,15 @@ import "." as SS
 SS.Box {
     id: body
 
-    centralText.horizontalAlignment: (centralText.lineCount > 1) ?
-                                     Text.AlignLeft : Text.AlignHCenter
-    centralText.width: content.width
-    centralText.wrapMode: Text.WordWrap
-
     property var bottomLeft
     property var bottomRight
     property var topLeft
     property var topRight
+
+    __centralText.horizontalAlignment: (__centralText.lineCount > 1) ?
+                                       Text.AlignLeft : Text.AlignHCenter
+    __centralText.width: content.width
+    __centralText.wrapMode: Text.WordWrap
 
     onBottomLeftChanged: {
         internal.anchor(bottomLeft, "bottom", "left");
