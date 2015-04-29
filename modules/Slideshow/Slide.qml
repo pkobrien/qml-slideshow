@@ -63,18 +63,18 @@ Rectangle {
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
         margin: slide.margin
-        slide: slide
         textHeight: 6
+        __slide: slide
     }
 
     SS.Header {
         id: header
 
         margin: slide.margin
-        slide: slide
         text: (title) ? title :
               (presentation) ? presentation.title : "Presentation Title"
         textHeight: 4
+        __slide: slide
     }
 
     SS.Footer {
@@ -84,8 +84,8 @@ Rectangle {
         text: time.text
         rightText: numbering.text
         margin: slide.margin
-        slide: slide
         textHeight: 3
+        __slide: slide
     }
 
     SS.Date {

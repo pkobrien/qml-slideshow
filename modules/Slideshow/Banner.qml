@@ -9,20 +9,20 @@ SS.Box {
 
     property alias line: line
 
-    height: slide.units(textHeight) + slide.units(margin) * 2
+    height: __slide.units(textHeight) + __slide.units(margin) * 2
 
     Text {
         id: leftContentText
         anchors.left: content.left
         anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: slide.units(textHeight)
+        font.pixelSize: __slide.units(textHeight)
     }
 
     Text {
         id: rightContentText
         anchors.right: content.right
         anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: slide.units(textHeight)
+        font.pixelSize: __slide.units(textHeight)
     }
 
     Rectangle {
