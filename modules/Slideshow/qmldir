@@ -9,6 +9,4 @@ Header 1.0 Header.qml
 Presentation 1.0 Presentation.qml
 Slide 1.0 Slide.qml
 SlideNumber 1.0 SlideNumber.qml
-Text 1.0 Text.qml
 Time 1.0 Time.qml
-TitleText 1.0 TitleText.qml

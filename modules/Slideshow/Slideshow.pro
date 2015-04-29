@@ -13,9 +13,7 @@ DISTFILES += \
     Presentation.qml \
     Slide.qml \
     SlideNumber.qml \
-    Text.qml \
     Time.qml \
-    TitleText.qml
 
 target.path = $$[QT_INSTALL_QML]/Slideshow
 
