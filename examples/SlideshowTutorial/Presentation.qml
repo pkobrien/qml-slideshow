@@ -7,13 +7,15 @@ import "." as App
 SS.Presentation {
     title: "QML Slideshow Tutorial"
 
+    App.HeaderBodyFooterDiagramSlide {  }
+
+//    App.Slide { }
+
     App.DevelopmentSlide {  }
 
     App.BasicTitleSlide {  }
 
     App.FancyTitleSlide {  }
-
-//    App.Slide { }
 
     SS.Slide {
         text: "This is the simplest slide you can create."
@@ -26,9 +28,7 @@ the header, footer, font, margins, etc. are all default values.
 "
     }
 
-    HeaderBodyFooterDiagramSlide {
-        id: slide
-    }
+    App.HeaderBodyFooterDiagramSlide {  }
 
     SS.Slide {
         title: "Simple Slide"
@@ -48,14 +48,21 @@ switching from centered to left aligned.
 "
     }
 
-    App.Slide {
+    SS.Slide {
         title: "Custom Base Slide"
-        text: "Did you notice anything different on that last slide?"
+        text: "
+Did you notice anything different on that last slide? Or the next one?"
     }
 
     App.Slide {
         title: "Customizing Slide Defaults"
         text: "The difference was in the use of a custom base slide."
+    }
+
+    App.Slide {
+        fontFamily: "Roboto Condensed"
+        title: "Customizing Slide Defaults"
+        text: "This slide also changes the font family to Roboto Condensed."
     }
 
     App.Slide {

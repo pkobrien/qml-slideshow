@@ -70,6 +70,7 @@ Rectangle {
         anchors.left: slide.left
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
+        font.family: slide.fontFamily
         margin: slide.margin
         textHeight: 6
     }
@@ -77,6 +78,7 @@ Rectangle {
     SS.Header {
         id: header
 
+        font.family: slide.fontFamily
         margin: slide.margin
         text: (title) ? title :
               (presentation) ? presentation.title : "Presentation Title"
@@ -86,6 +88,7 @@ Rectangle {
     SS.Footer {
         id: footer
 
+        font.family: slide.fontFamily
         leftText: date.text
         text: time.text
         rightText: numbering.text

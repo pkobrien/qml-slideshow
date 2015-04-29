@@ -16,6 +16,7 @@ SS.Box {
         anchors.left: content.left
         anchors.verticalCenter: content.verticalCenter
         font.pixelSize: __slide.units(textHeight)
+        font.family: banner.font.family
     }
 
     Text {
@@ -23,6 +24,7 @@ SS.Box {
         anchors.right: content.right
         anchors.verticalCenter: content.verticalCenter
         font.pixelSize: __slide.units(textHeight)
+        font.family: banner.font.family
     }
 
     Rectangle {

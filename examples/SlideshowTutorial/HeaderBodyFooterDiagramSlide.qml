@@ -7,14 +7,15 @@ import "." as App
 SS.Slide {
     id: slide
     
+    fontFamily: "Roboto Slab"
+
     header.border.width: 2
+    header.font.bold: true
     header.line.visible: false
     header.text: "Header"
 
     body.border.width: 2
     body.text: "Body"
-
-//    footer: SS.Footer {  }
 
     footer.border.width: 2
     footer.line.visible: false
