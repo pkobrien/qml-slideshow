@@ -62,7 +62,7 @@ The difference was in the use of a custom base slide with a modified footer."
         text: "This slide also changes the font family to Roboto Condensed."
     }
 
-    App.HeaderBodyFooterDiagramSlide {  }
+    App.HBFDiagramSlide {  }
 
     App.HBFTextDiagramSlide {  }
 
