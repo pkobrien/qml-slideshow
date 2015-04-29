@@ -92,6 +92,8 @@ switching from centered to left aligned.
         }
     }
 
+    App.ColorDeck {  }
+
     /*
 
     App.Slide {
@@ -264,8 +266,6 @@ Are bullets worth fighting for?
 //////            }
 ////        }
 //    }
-
-    App.ColorDeck {  }
 
     Item {
         id: deck

@@ -12,10 +12,15 @@ Item {
 
         App.Slide {
             header.text: deck.header
+            header.line.width: width
+            header.line.height: 6
+            header.line.color: Qt.lighter(body.color)
+            header.margin: margin * 2
             body.color: modelData
             text: modelData
             textHeight: deck.textHeight
             textColor: Qt.darker(body.color)
+            footer.color: Qt.lighter(body.color)
         }
     }
 }
