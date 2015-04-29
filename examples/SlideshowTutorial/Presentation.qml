@@ -7,70 +7,25 @@ import "." as App
 SS.Presentation {
     title: "QML Slideshow Tutorial"
 
-    App.Slide {
-//        id: slide
+    App.DevelopmentSlide {  }
 
-        text: slide.numbering.total + " Slides"
+    App.BasicTitleSlide {  }
 
-//        bottomLeft: GridLayout {
-//            implicitHeight: childrenRect.height
-//            implicitWidth: childrenRect.width
-////            width: slide.content.width
-//            columns: 2
-//            Rectangle {
-//                width: slide.content.width / 6
-//                height: width
-//                color: "Orange"
-//            }
-//            Rectangle {
-//                width: slide.content.width / 8
-//                height: width
-//                color: "Yellow"
-//            }
-//        }
+//    App.Slide { }
 
-        bottomRight: Rectangle {
-            width: slide.content.width / 8
-            height: width
-            color: "Green"
-        }
-
-        Rectangle {
-            width: slide.content.width / 4
-            height: width
-            color: "Red"
-        }
-        Rectangle {
-            width: slide.content.width / 8
-            height: width
-            color: "Blue"
-        }
-    }
-
-    App.Slide {
-        body.color: "Transparent"
-        footer.visible: false;
-        header.visible: false;
-
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "White" }
-            GradientStop { position: 1.0; color: "Silver" }
-        }
-
-        text: slide.presentation.title
-        textHeight: Math.floor(slide.height * 0.10)
-
-//        SS.TitleText {
-//            anchors.centerIn: slide
-//            text: slide.presentation.title
-//        }
-    }
-
-    App.Slide {
+    SS.Slide {
         text: "This is the simplest slide you can create."
     }
 
-    App.Slide {
+    SS.Slide {
+        text: "
+Other than assigning a string value to a text property (that you see here),
+the header, footer, font, margins, etc. are all default values.
+"
+    }
+
+    SS.Slide {
+        title: "Simple Slide"
         text: "
 This is also a simple slide, only it has lots of text. Even though it has a
 lot of text, the text will wrap at word boundaries so it all fits inside
@@ -79,6 +34,7 @@ the body of the slide, up to a point...
     }
 
     App.Slide {
+        title: "Special Text Features"
         text: "
 It will even do text.trim().split(\"\\n\").join(\" \") for you.
 And set the horizontal alignment when the line count is greater than one,
@@ -87,10 +43,23 @@ switching from centered to left aligned.
     }
 
     App.Slide {
+        title: "Custom Base Slide"
+        text: "Did you notice anything different on that last slide?"
+    }
+
+    App.Slide {
+        title: "Customizing Slide Defaults"
+        text: "The difference was in the use of a custom base slide."
+    }
+
+    App.Slide {
+        title: "Children Are Added To A Row"
         Text {
             text: "QtQuick Text component with no modfication."
         }
     }
+
+    App.Squares {  }
 
     App.ColorDeck {  }
 
