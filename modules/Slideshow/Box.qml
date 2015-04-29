@@ -6,12 +6,12 @@ Rectangle {
 
     property alias content: content
     property alias font: centralText.font
+    property real margin: 0
     property alias row: row
+    property var slide
     property alias text: centralText.text
     property alias textColor: centralText.color
-    property alias textHeight: centralText.font.pixelSize
-
-    property int margin: 0
+    property real textHeight
 
     property alias __centralText: centralText
 
@@ -19,13 +19,14 @@ Rectangle {
         id: centralText
         anchors.horizontalCenter: content.horizontalCenter
         anchors.verticalCenter: content.verticalCenter
+        font.pixelSize: slide.units(box.textHeight)
     }
 
     Rectangle {
         id: content
 
         anchors.fill: box
-        anchors.margins: box.margin
+        anchors.margins: slide.units(box.margin)
         color: "Transparent"
     }
 
@@ -33,6 +34,6 @@ Rectangle {
         id: row
 
         anchors.fill: box
-        anchors.margins: box.margin
+        anchors.margins: slide.units(box.margin)
     }
 }

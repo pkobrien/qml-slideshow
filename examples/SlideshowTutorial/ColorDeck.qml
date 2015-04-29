@@ -4,22 +4,21 @@ import "." as App
 
 Item {
     id: deck
-    property string header: "External Nested Slides: ROYGBIV"
-    property int textHeight: Math.floor(parent.height * 0.2)
+    property string title: "External Nested Slides: ROYGBIV"
     
     Repeater {
         model: ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
 
         App.Slide {
-            header.text: deck.header
+            title: deck.title
             header.line.width: width
             header.line.height: 6
-            header.line.color: Qt.lighter(body.color)
+            header.line.color: Qt.darker(body.color)
             header.margin: margin * 2
             body.color: modelData
             text: modelData
-            textHeight: deck.textHeight
-            textColor: Qt.darker(body.color)
+            textHeight: 40
+            textColor: Qt.lighter(body.color)
             footer.color: Qt.lighter(body.color)
         }
     }

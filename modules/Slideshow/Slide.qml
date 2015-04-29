@@ -21,7 +21,7 @@ Rectangle {
     property alias numbering: slideNumber
     property alias time: time
 
-    property int margin: Math.floor(slide.height * 0.02)
+    property int margin: 2
     property int number: 0
     property var presentation
 
@@ -49,16 +49,11 @@ Rectangle {
         }
     }
 
-    Component.onCompleted: moveUserChildrenToBodyRow();
-
-    SS.Header {
-        id: header
-
-        margin: slide.margin
-        text: (title) ? title :
-              (presentation) ? presentation.title : "Presentation Title"
-        textHeight: Math.floor(slide.height * 0.04)
+    function units(percent) {
+        return Math.floor(slide.height * (percent / 100))
     }
+
+    Component.onCompleted: moveUserChildrenToBodyRow();
 
     SS.Body {
         id: body
@@ -68,7 +63,18 @@ Rectangle {
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
         margin: slide.margin
-        textHeight: Math.floor(slide.height * 0.06)
+        slide: slide
+        textHeight: 6
+    }
+
+    SS.Header {
+        id: header
+
+        margin: slide.margin
+        slide: slide
+        text: (title) ? title :
+              (presentation) ? presentation.title : "Presentation Title"
+        textHeight: 4
     }
 
     SS.Footer {
@@ -78,7 +84,8 @@ Rectangle {
         text: time.text
         rightText: numbering.text
         margin: slide.margin
-        textHeight: Math.floor(slide.height * 0.03)
+        slide: slide
+        textHeight: 3
     }
 
     SS.Date {

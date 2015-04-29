@@ -1,4 +1,5 @@
 module Slideshow
+Banner 1.0 Banner.qml
 Body 1.0 Body.qml
 Box 1.0 Box.qml
 Clock 1.0 Clock.qml

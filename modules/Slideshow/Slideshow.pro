@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 DISTFILES += \
     fonts \
     qmldir \
+    Banner.qml \
     Body.qml \
     Box.qml \
     Clock.qml \
