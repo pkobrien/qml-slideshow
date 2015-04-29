@@ -14,6 +14,8 @@ SS.Box {
     __centralText.width: content.width
     __centralText.wrapMode: Text.WordWrap
 
+    __slide: parent
+
     onBottomLeftChanged: {
         internal.anchor(bottomLeft, "bottom", "left");
     }

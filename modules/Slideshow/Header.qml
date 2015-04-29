@@ -10,4 +10,6 @@ SS.Banner {
 
     line.height: 3
     line.anchors.bottom: header.bottom
+
+    __slide: parent
 }

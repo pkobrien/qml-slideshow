@@ -25,6 +25,7 @@ Rectangle {
     property int number: 0
     property var presentation
 
+    property string fontFamily: "Roboto"
     property string text
     property alias textColor: body.textColor
     property alias textHeight: body.textHeight
@@ -38,13 +39,20 @@ Rectangle {
 
     function moveUserChildrenToBodyRow() {
         // Make a copy first, since we change their parent value.
+        var child;
+        var i;
         var userChildren = [];
-        var i = 3;  // Skip existing children: header, body, footer.
-        for (i; i < children.length; i++) {
+        // Skip existing children: header, body, footer.
+        for (i = 0; i < children.length; i++) {
+            child = children[i];
+            switch (child) {
+                case header: case body: case footer:
+                    continue;
+            }
             userChildren.push(children[i]);
         }
         for (i = 0; i < userChildren.length; i++) {
-            var child = userChildren[i];
+            child = userChildren[i];
             child.parent = body.row;
         }
     }
@@ -64,7 +72,6 @@ Rectangle {
         anchors.top: (header.visible) ? header.bottom : slide.top
         margin: slide.margin
         textHeight: 6
-        __slide: slide
     }
 
     SS.Header {
@@ -74,7 +81,6 @@ Rectangle {
         text: (title) ? title :
               (presentation) ? presentation.title : "Presentation Title"
         textHeight: 4
-        __slide: slide
     }
 
     SS.Footer {
@@ -85,7 +91,6 @@ Rectangle {
         rightText: numbering.text
         margin: slide.margin
         textHeight: 3
-        __slide: slide
     }
 
     SS.Date {

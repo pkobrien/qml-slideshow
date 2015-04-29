@@ -10,4 +10,6 @@ SS.Banner {
 
     line.height: 1
     line.anchors.top: footer.top
+
+    __slide: parent
 }
