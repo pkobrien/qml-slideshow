@@ -8,7 +8,6 @@ Rectangle {
     height: (presentation) ? presentation.height : 600
 
     property alias body: body
-//    property alias centralText: body.centralText
     property alias content: body.content
     property alias footer: footer
     property alias header: header
@@ -29,6 +28,7 @@ Rectangle {
     property string text
     property alias textColor: body.textColor
     property alias textHeight: body.textHeight
+    property string title
 
     readonly property bool isSlide: true
 
@@ -55,7 +55,8 @@ Rectangle {
         id: header
 
         margin: slide.margin
-        text: (presentation) ? presentation.title : "Presentation Title"
+        text: (title) ? title :
+              (presentation) ? presentation.title : "Presentation Title"
         textHeight: Math.floor(slide.height * 0.04)
     }
 
