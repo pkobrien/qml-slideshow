@@ -34,7 +34,7 @@ Rectangle {
 
     readonly property bool isSlide: true
 
-    visible: (slide === presentation.activeSlide)
+    visible: (presentation) ? (slide === presentation.activeSlide) : true
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
 
@@ -81,7 +81,7 @@ Rectangle {
         font.family: slide.fontFamily
         margin: slide.margin
         text: (title) ? title :
-              (presentation) ? presentation.title : "Presentation Title"
+              (presentation) ? presentation.title : "Slide/Presentation Title"
         textHeight: 4
     }
 
