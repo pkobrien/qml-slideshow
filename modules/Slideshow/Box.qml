@@ -4,7 +4,6 @@ import "." as SS
 Rectangle {
     id: box
 
-    property alias content: content
     property alias font: centralText.font
     property alias grid: grid
     property real margin: 0
@@ -13,6 +12,7 @@ Rectangle {
     property real textHeight
 
     property alias __centralText: centralText
+    property alias __content: content
     property var __slide
 
     Text {
@@ -22,18 +22,16 @@ Rectangle {
         font.pixelSize: __slide.units(box.textHeight)
     }
 
-    Rectangle {
+    Item {
         id: content
 
         anchors.fill: box
         anchors.margins: __slide.units(box.margin)
-        color: "Transparent"
     }
 
     Grid {
         id: grid
 
-        anchors.fill: box
-        anchors.margins: __slide.units(box.margin)
+        anchors.fill: content
     }
 }

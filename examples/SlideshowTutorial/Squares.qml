@@ -10,9 +10,9 @@ App.Slide {
     text: slide.numbering.total + " Slides"
 
     bottomLeft: RowLayout {
-        width: slide.content.width / 2
+        width: slide.grid.width / 2
         Rectangle {
-            implicitWidth: slide.content.width / 6
+            implicitWidth: slide.grid.width / 6
             implicitHeight: implicitWidth
             color: "Orange"
         }
@@ -20,25 +20,25 @@ App.Slide {
             Layout.fillWidth: true
         }
         Rectangle {
-            implicitWidth: slide.content.width / 10
+            implicitWidth: slide.grid.width / 10
             implicitHeight: implicitWidth
             color: "Indigo"
         }
     }
 
     bottomRight: Rectangle {
-        width: slide.content.width / 8
+        width: slide.grid.width / 8
         height: width
         color: "Green"
     }
 
     Rectangle {
-        width: slide.content.width / 4
+        width: slide.grid.width / 4
         height: width
         color: "Red"
     }
     Rectangle {
-        width: slide.content.width / 8
+        width: slide.grid.width / 8
         height: width
         color: "Blue"
     }

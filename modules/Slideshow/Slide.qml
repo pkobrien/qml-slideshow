@@ -8,7 +8,6 @@ Rectangle {
     height: (presentation) ? presentation.height : 600
 
     property alias body: body
-    property alias content: body.content
     property alias footer: footer
     property alias grid: body.grid
     property alias header: header
@@ -18,19 +17,19 @@ Rectangle {
     property alias topLeft: body.topLeft
     property alias topRight: body.topRight
 
-    property alias date: date
-    property alias numbering: slideNumber
-    property alias time: time
-
-    property int margin: 2
-    property int number: 0
-    property var presentation
-
     property string fontFamily: "Roboto"
+    property int margin: 2  // As percentage of slide height.
     property string text
     property alias textColor: body.textColor
     property alias textHeight: body.textHeight
     property string title
+
+    property alias date: date
+    property alias numbering: slideNumber
+    property alias time: time
+
+    property int number: 0
+    property var presentation
 
     readonly property bool isSlide: true
 

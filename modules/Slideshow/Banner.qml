@@ -13,23 +13,23 @@ SS.Box {
 
     Text {
         id: leftContentText
-        anchors.left: content.left
-        anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: __slide.units(textHeight)
+        anchors.left: banner.__content.left
+        anchors.verticalCenter: banner.__content.verticalCenter
+        font.pixelSize: banner.__slide.units(textHeight)
         font.family: banner.font.family
     }
 
     Text {
         id: rightContentText
-        anchors.right: content.right
-        anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: __slide.units(textHeight)
+        anchors.right: banner.__content.right
+        anchors.verticalCenter: banner.__content.verticalCenter
+        font.pixelSize: banner.__slide.units(textHeight)
         font.family: banner.font.family
     }
 
     Rectangle {
         id: line
-        width: banner.content.width
+        width: banner.__content.width
         height: 0
         color: "Black"
         anchors.horizontalCenter: banner.horizontalCenter

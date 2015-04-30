@@ -11,7 +11,7 @@ SS.Box {
 
     __centralText.horizontalAlignment: (__centralText.lineCount > 1) ?
                                        Text.AlignLeft : Text.AlignHCenter
-    __centralText.width: content.width
+    __centralText.width: __content.width
     __centralText.wrapMode: Text.WordWrap
 
     __slide: parent
@@ -37,9 +37,9 @@ SS.Box {
 
         function anchor(obj, location1, location2) {
             if (obj) {
-                obj.parent = body.content;
-                obj.anchors[location1] = body.content[location1];
-                obj.anchors[location2] = body.content[location2];
+                obj.parent = body.__content;
+                obj.anchors[location1] = body.__content[location1];
+                obj.anchors[location2] = body.__content[location2];
             }
         }
     }
