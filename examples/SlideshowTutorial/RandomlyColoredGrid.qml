@@ -15,7 +15,7 @@ App.Slide {
     Repeater {
         id: repeater
 
-        property var cells: []
+        property var items: []
 
         function randomColor() {
             return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
@@ -23,9 +23,9 @@ App.Slide {
 
         model: 100
 
-        Rectangle {
-            id: cell
+        onItemAdded: items.push(item);
 
+        Rectangle {
             border.width: 1
             width: slide.grid.width / 10
             height: slide.grid.height / 10
@@ -37,13 +37,12 @@ App.Slide {
                 font.pixelSize: slide.units(slide.textHeight)
                 text: modelData
             }
-            Component.onCompleted: repeater.cells.push(cell);
         }
     }
 
     onTriggered: {
-        for (var i = 0; i < repeater.cells.length; i++) {
-            repeater.cells[i].color = repeater.randomColor();
+        for (var i = 0; i < repeater.items.length; i++) {
+            repeater.items[i].color = repeater.randomColor();
         }
     }
 }
