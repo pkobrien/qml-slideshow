@@ -3,28 +3,13 @@ import QtQuick 2.4
 Item {
     id: presentation
 
-    readonly property alias slide: presentation.activeSlide // Evil! :-)
+    readonly property alias slide: presentation.activeSlide
 
     property var activeSlide
     property int activeSlideIndex: 0
     property int slideCount: 0
     property var slides: []
     property string title: "Presentation Title"
-
-    function findSlides(obj) {
-        var child;
-        for (var i = 0; i < obj.children.length; i++) {
-            child = obj.children[i];
-            if (child.isSlide) {
-                slideCount++;
-                child.number = slideCount;
-                child.presentation = presentation;
-                slides.push(child);
-            } else if (child.children) {
-                findSlides(child);
-            }
-        }
-    }
 
     function next() {
         activeSlide.exited();
@@ -39,9 +24,31 @@ Item {
     }
 
     Component.onCompleted: {
-        findSlides(presentation);
+        internal.findSlides(presentation);
         activeSlideIndex = 0;
         activeSlide = slides[activeSlideIndex];
+    }
+
+    QtObject {
+        id: internal
+
+        function findSlides(obj) {
+            var child;
+            for (var i = 0; i < obj.children.length; i++) {
+                child = obj.children[i];
+                if (child === internal) {
+                    continue;
+                }
+                if (child.isSlide) {
+                    slideCount++;
+                    child.number = slideCount;
+                    child.presentation = presentation;
+                    slides.push(child);
+                } else if (child.children) {
+                    findSlides(child);
+                }
+            }
+        }
     }
 
     FontLoader { source: "fonts/Roboto/Roboto-Black.ttf" }
