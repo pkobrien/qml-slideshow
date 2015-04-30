@@ -41,7 +41,7 @@ Rectangle {
         return Math.floor(slide.height * (percent / 100))
     }
 
-    visible: (presentation) ? (slide === presentation.activeSlide) : true
+    visible: (presentation) ? (slide === presentation.slide) : true
 
     onEntered: go.nextSignal = slide.exited;
     onExited: go.nextSignal = slide.entered;
