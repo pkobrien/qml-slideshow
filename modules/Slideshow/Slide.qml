@@ -52,6 +52,8 @@ Rectangle {
         if (visible) {
             entered();
         }
+        // Exited() is triggered by Presentation *before* the slide is
+        // no longer visible, so visible changes can still take place.
     }
 
     Component.onCompleted: internal.moveUserDefinedChildrenToBodyGrid();
