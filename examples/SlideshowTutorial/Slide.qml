@@ -8,15 +8,6 @@ SS.Slide {
     time.format: Locale.LongFormat
     numbering.format: "Slide %1 of %2"
 
+    footer.color: "LightSteelBlue"
     footer.line.width: slide.width
-
-//    footer.leftText: date.text
-
-//    footer.text: time.text
-
-//    footer.rightText: numbering.text
-
-//    header.line.color: "Gray"
-//    header.line.width: body.width
-
 }

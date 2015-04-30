@@ -106,14 +106,15 @@ Are asterisks as good as bullets?
 
     App.Slide {
         body.margin: margin * 5
-        body.text: "
+        body.text: ("
 Are bullets worth fighting for? Do they really make things better? Really? " +
-"How hard would you fight for them?
+"How hard would you fight for them? I'm only asking because I need a lot of " +
+"words to test this particular slide.
 
     * Valiantly
     * Cowardly
     * Depends
-".trim()
+").trim()
     }
 
     /*

@@ -33,9 +33,17 @@ Rectangle {
 
     readonly property bool isSlide: true
 
+    signal triggered()
+
     visible: (presentation) ? (slide === presentation.activeSlide) : true
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
+
+    onVisibleChanged: {
+        if (visible) {
+            triggered();
+        }
+    }
 
     function __moveUserDefinedChildrenToBodyGrid() {
         // Copy children to a new list, since we change their parent value.
@@ -110,4 +118,8 @@ Rectangle {
         __current: slide.number
         __total: (presentation) ? presentation.slideCount : 0
     }
+
+    focus: (visible)
+
+    Keys.onSpacePressed: triggered();
 }

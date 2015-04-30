@@ -10,9 +10,9 @@ SS.Slide {
     fontFamily: "Roboto Slab"
 
     header.border.width: 2
-    header.font.bold: true
     header.line.visible: false
 
+    header.font.bold: true
     header.text: "header"
 
     body.border.width: 2

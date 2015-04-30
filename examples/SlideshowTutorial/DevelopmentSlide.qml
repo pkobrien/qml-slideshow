@@ -9,4 +9,6 @@ App.Slide {
     id: slide
 
     title: "Under Construction"
+
+    onTriggered: { text = Math.random(); }
 }

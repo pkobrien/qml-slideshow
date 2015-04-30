@@ -7,6 +7,7 @@ import "." as App
 
 App.Slide {
     id: slide
+
     body.color: "Transparent"
 
     footer.visible: false
