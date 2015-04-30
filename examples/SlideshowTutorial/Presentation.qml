@@ -67,7 +67,6 @@ The difference was in the use of a custom base slide with a modified footer."
     App.HBFTextDiagramSlide {  }
 
     App.Slide {
-        id: slide
         title: "Children Are Magically Added To A Grid"
         Text {
             font.family: slide.fontFamily
@@ -117,18 +116,51 @@ Are bullets worth fighting for? Do they really make things better? Really? " +
 ").trim()
     }
 
-    /*
-
     App.Slide {
-        body.content.color: "Red"
-        body.margin: width / 10
+        header.color: footer.color
+        header.line.width: width
+
+        body.color: "Red"
+        body.margin: 20
+
+        grid.columns: 1
+        grid.rows: 1
+
+        text: "Blue on Red"
 
         Rectangle {
-            anchors.fill: parent.body
-            anchors.margins: parent.body.margin
+            border.width: 3
+            width: slide.grid.width
+            height: slide.grid.height
             color: "Blue"
+            radius: height / 2
         }
     }
+
+    App.Slide {
+        body.visible: false
+
+        header.font.family: "Roboto Slab"
+        header.text: "Easy Header & Footer Customization"
+        header.gradient: Gradient {
+            GradientStop { position: 0.0; color: "Black" }
+            GradientStop { position: 1.0; color: "Blue" }
+        }
+        header.font.bold: true
+        header.textColor: "White"
+        header.textHeight: 7
+        header.line.visible: false
+        header.margin: margin * 2
+
+        footer.color: "Yellow"
+        footer.font.family: "Roboto Condensed"
+        footer.line.width: width
+        footer.font.bold: true
+        footer.leftText: "What time is it?"
+    }
+
+
+    /*
 
 //    App.Slide {
 //        Column {
@@ -256,42 +288,6 @@ Are bullets worth fighting for? Do they really make things better? Really? " +
         }
     }
 
-    App.Slide {
-        body.visible: false
-
-        header.text: "Easy Header & Footer Customization"
-        header.gradient: Gradient {
-            GradientStop { position: 0.0; color: "Black" }
-            GradientStop { position: 1.0; color: "Blue" }
-        }
-        header.font.bold: true
-        header.textColor: "White"
-        header.textHeight: Math.floor(height * 0.07)
-        header.line.visible: false
-        header.margin: margin * 2
-
-        footer.color: "Yellow"
-        footer.line.width: width
-//        footer.dateText.visible: true
-//        footer.dateText.format: Locale.LongFormat
-//        footer.timeText.format: Locale.LongFormat
-//        footer.timeText.updateInterval: 60
-//        footer.timeText.font.bold: true
-//        footer.slideNumber.format: "Slide %1 of %2"
-    }
-
-    Repeater {
-        id: repeater
-
-        model: 10
-
-        App.Slide {
-            SS.TitleText {
-                anchors.centerIn: slide.body
-                text: "Repeater Delegate " + (index + 1) +
-                      " of " + repeater.model
-            }
-        }
-    }
 // */
+
 }

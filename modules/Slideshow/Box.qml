@@ -15,13 +15,6 @@ Rectangle {
     property alias __content: content
     property var __slide
 
-    Text {
-        id: centralText
-        anchors.horizontalCenter: content.horizontalCenter
-        anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: __slide.units(box.textHeight)
-    }
-
     Item {
         id: content
 
@@ -33,5 +26,12 @@ Rectangle {
         id: grid
 
         anchors.fill: content
+    }
+
+    Text {
+        id: centralText
+        anchors.horizontalCenter: content.horizontalCenter
+        anchors.verticalCenter: content.verticalCenter
+        font.pixelSize: __slide.units(box.textHeight)
     }
 }
