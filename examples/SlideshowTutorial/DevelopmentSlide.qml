@@ -10,11 +10,21 @@ App.Slide {
 
     title: "Under Construction"
 
+    function start() {
+        text = "Press [Space] for a random number."
+    }
+
+    function stop() {
+        text = "All done."
+    }
+
     function update() {
         text = Math.random();
     }
 
-    onEntered: update();
+    onEntered: start();
+
+    onExited: stop();
 
     onTriggered: update();
 }

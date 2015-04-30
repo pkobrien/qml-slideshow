@@ -12,26 +12,29 @@ Item {
     Item {
         id: internal
 
-        property int index: 0
+        property int index: -1
         property var slide
         property int slideCount: 0
         property var slides: []
 
+        onIndexChanged: {
+            if (slide) {
+                slide.exited();
+            }
+            slide = slides[index];
+        }
+
         Component.onCompleted: {
             findSlides(presentation);
-            slide = slides[index];
+            index = 0;
         }
 
         function next() {
-            slide.exited();
             index = Math.min(index + 1, slides.length - 1);
-            slide = slides[index];
         }
 
         function previous() {
-            slide.exited();
             index = Math.max(index - 1, 0);
-            slide = slides[index];
         }
 
         function findSlides(obj) {

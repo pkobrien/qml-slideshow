@@ -43,13 +43,24 @@ Rectangle {
 
     visible: (presentation) ? (slide === presentation.slide) : true
 
-    onEntered: go.nextSignal = slide.exited;
-    onExited: go.nextSignal = slide.entered;
+    onEntered: {
+        if (!presentation) {
+            internal.entered = true;
+            go.nextSignal = slide.exited;
+        }
+    }
+
+    onExited: {
+        if (!presentation) {
+            internal.entered = false;
+            go.nextSignal = slide.entered;
+        }
+    }
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
 
     onVisibleChanged: {
-        if (visible) {
+        if (visible && presentation) {
             entered();
         }
         // Exited() is triggered by Presentation *before* the slide is
@@ -60,6 +71,20 @@ Rectangle {
 
     QtObject {
         id: internal
+
+        property bool entered: false
+
+        function trigger() {
+            if (!presentation && !entered) {
+                // When a slide is run in qmlscene outside of a presentation
+                // the entered() signal is not initially executed. So if the
+                // user hits [Space] for triggered() we may need to execute the
+                // entered() signal first to duplicate the state the slide will
+                // be in when it appears within a presentation.
+                slide.entered();
+            }
+            slide.triggered();
+        }
 
         function moveUserDefinedChildrenToBodyGrid() {
             // Copy children to a new list, since we change their parent value.
@@ -151,5 +176,5 @@ Rectangle {
     Keys.onEscapePressed: Qt.quit();
     Keys.onLeftPressed: go.next(event);
     Keys.onRightPressed: go.next(event);
-    Keys.onSpacePressed: triggered();
+    Keys.onSpacePressed: internal.trigger();
 }
