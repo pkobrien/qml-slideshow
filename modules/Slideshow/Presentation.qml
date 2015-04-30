@@ -3,7 +3,8 @@ import QtQuick 2.4
 Item {
     id: presentation
 
-    readonly property alias slide: presentation.activeSlide
+    readonly property alias slide: presentation.activeSlide // Evil! :-)
+
     property var activeSlide
     property int activeSlideIndex: 0
     property int slideCount: 0
@@ -26,11 +27,13 @@ Item {
     }
 
     function next() {
+        activeSlide.exited();
         activeSlideIndex = Math.min(activeSlideIndex + 1, slides.length - 1);
         activeSlide = slides[activeSlideIndex];
     }
 
     function previous() {
+        activeSlide.exited();
         activeSlideIndex = Math.max(activeSlideIndex - 1, 0);
         activeSlide = slides[activeSlideIndex];
     }

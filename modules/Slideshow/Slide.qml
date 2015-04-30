@@ -33,42 +33,51 @@ Rectangle {
 
     readonly property bool isSlide: true
 
+    signal entered()
+    signal exited()
     signal triggered()
-
-    visible: (presentation) ? (slide === presentation.activeSlide) : true
-
-    onTextChanged: body.text = text.trim().split("\n").join(" ");
-
-    onVisibleChanged: {
-        if (visible) {
-            triggered();
-        }
-    }
-
-    function __moveUserDefinedChildrenToBodyGrid() {
-        // Copy children to a new list, since we change their parent value.
-        var child, i;
-        var userChildren = [];
-        for (i = 0; i < children.length; i++) {
-            child = children[i];
-            switch (child) {
-                // Skip existing children: header, body, footer.
-                case header: case body: case footer:
-                    continue;
-            }
-            userChildren.push(children[i]);
-        }
-        for (i = 0; i < userChildren.length; i++) {
-            child = userChildren[i];
-            child.parent = body.grid;
-        }
-    }
 
     function units(percent) {
         return Math.floor(slide.height * (percent / 100))
     }
 
-    Component.onCompleted: __moveUserDefinedChildrenToBodyGrid();
+    visible: (presentation) ? (slide === presentation.activeSlide) : true
+
+    onEntered: go.nextSignal = slide.exited;
+    onExited: go.nextSignal = slide.entered;
+
+    onTextChanged: body.text = text.trim().split("\n").join(" ");
+
+    onVisibleChanged: {
+        if (visible) {
+            entered();
+        }
+    }
+
+    Component.onCompleted: internal.moveUserDefinedChildrenToBodyGrid();
+
+    QtObject {
+        id: internal
+
+        function moveUserDefinedChildrenToBodyGrid() {
+            // Copy children to a new list, since we change their parent value.
+            var child, i;
+            var userChildren = [];
+            for (i = 0; i < children.length; i++) {
+                child = children[i];
+                switch (child) {
+                    // Skip existing children: header, body, footer.
+                    case header: case body: case footer:
+                        continue;
+                }
+                userChildren.push(children[i]);
+            }
+            for (i = 0; i < userChildren.length; i++) {
+                child = userChildren[i];
+                child.parent = body.grid;
+            }
+        }
+    }
 
     SS.Body {
         id: body
@@ -119,7 +128,26 @@ Rectangle {
         __total: (presentation) ? presentation.slideCount : 0
     }
 
+    QtObject {
+        id: go
+
+        // Toggle between entered and exited when running slide directly in
+        // qmlscene without a presentation as the parent (or ancestor).
+
+        property var nextSignal: slide.entered
+
+        function next(event) {
+            event.accepted = false;
+            if (!presentation) {
+                nextSignal();
+            }
+        }
+    }
+
     focus: (visible)
 
+    Keys.onEscapePressed: Qt.quit();
+    Keys.onLeftPressed: go.next(event);
+    Keys.onRightPressed: go.next(event);
     Keys.onSpacePressed: triggered();
 }

@@ -40,9 +40,12 @@ App.Slide {
         }
     }
 
-    onTriggered: {
+    function update() {
         for (var i = 0; i < repeater.items.length; i++) {
             repeater.items[i].color = repeater.randomColor();
         }
     }
+
+    onEntered: update();
+    onTriggered: update();
 }

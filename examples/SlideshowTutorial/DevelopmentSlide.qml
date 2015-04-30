@@ -10,5 +10,11 @@ App.Slide {
 
     title: "Under Construction"
 
-    onTriggered: { text = Math.random(); }
+    function update() {
+        text = Math.random();
+    }
+
+    onEntered: update();
+
+    onTriggered: update();
 }

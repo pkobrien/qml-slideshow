@@ -13,18 +13,27 @@ App.Slide {
     footer.visible: false
     header.visible: false
 
-    onVisibleChanged: {
-        if (visible) {
-            cone.increment = -cone.increment;
-            cone.angle = 90;
-            spin.interval = 100;
-            waitForIt.start();
-        } else {
-            waitForIt.stop();
-            goForIt.stop();
-            spin.stop();
-        }
+    function start() {
+        cone.increment = -cone.increment;
+        cone.angle = 90;
+        spin.interval = 100;
+        waitForIt.start();
     }
+
+    function stop() {
+        waitForIt.stop();
+        goForIt.stop();
+        spin.stop();
+    }
+
+    onEntered: start();
+
+    onTriggered: {
+        stop();
+        start();
+    }
+
+    onExited: stop();
 
     property Text fancyText: Text {
         parent: slide.body
@@ -37,7 +46,8 @@ App.Slide {
         horizontalAlignment: Text.AlignRight
         style: Text.Sunken
         styleColor: "White"
-        text: slide.presentation.title
+        text: (slide.presentation) ? slide.presentation.title :
+                                     "Slide Presentation Title"
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.WordWrap
     }
