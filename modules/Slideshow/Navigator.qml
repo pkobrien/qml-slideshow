@@ -9,6 +9,7 @@ QtObject {
     property var slide
     property int slideCount: 0
     property var slides: []
+    property var topDeck
     
     onIndexChanged: {
         if (slide) {
