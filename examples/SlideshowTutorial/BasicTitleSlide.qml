@@ -8,7 +8,7 @@ App.Slide {
     body.color: "Transparent"
     footer.visible: false;
     
-    text: slide.presentation.title
+    text: slide.header.text
     textHeight: 10
     
     gradient: Gradient {

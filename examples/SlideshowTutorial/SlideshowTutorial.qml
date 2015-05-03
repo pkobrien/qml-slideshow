@@ -3,13 +3,13 @@ import QtQuick.Window 2.2
 import "." as App
 
 Window {
-    title: presentation.title
+    title: deck.title
 
     width: 800
     height: 600
 
-    App.Presentation {
-        id: presentation
+    App.TutorialDeck {
+        id: deck
 
         anchors.fill: parent
     }

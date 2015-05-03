@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 import Slideshow 1.0 as SS
 import "." as App
 
-SS.Presentation {
+SS.Deck {
     title: "QML Slideshow Tutorial"
 
 //    App.Slide { }
@@ -75,9 +75,9 @@ The difference was in the use of a custom base slide with a modified footer."
         }
     }
 
-    App.RandomlyColoredGrid {  }
+    App.RandomlyColoredGridSlide {  }
 
-    App.Squares {  }
+    App.SquaresSlide {  }
 
     App.ColorDeck {  }
 

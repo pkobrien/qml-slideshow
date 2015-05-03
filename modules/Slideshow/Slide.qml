@@ -4,8 +4,10 @@ import "." as SS
 Rectangle {
     id: slide
 
-    width: (presentation) ? presentation.width : 800
-    height: (presentation) ? presentation.height : 600
+    width: (deck) ? deck.width : 800
+    height: (deck) ? deck.height : 600
+
+    property var deck
 
     property alias body: body
     property alias footer: footer
@@ -29,7 +31,6 @@ Rectangle {
     property alias time: time
 
     property int number: 0
-    property var presentation
 
     readonly property bool isSlide: true
 
@@ -41,46 +42,54 @@ Rectangle {
         return Math.floor(slide.height * (percent / 100))
     }
 
-    visible: (presentation) ? (slide === presentation.slide) : true
+    visible: (deck) ? (slide === SS.Navigator.slide) : true
 
     onEntered: {
-        if (!presentation) {
-            internal.entered = true;
-            go.nextSignal = slide.exited;
-        }
+        internal.entered = true;
+        internal.simulate = slide.exited;
     }
 
     onExited: {
-        if (!presentation) {
-            internal.entered = false;
-            go.nextSignal = slide.entered;
-        }
+        internal.entered = false;
+        internal.simulate = slide.entered;
     }
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
-
-    onVisibleChanged: {
-        if (visible && presentation) {
-            entered();
-        }
-        // Exited() is triggered by Presentation *before* the slide is
-        // no longer visible, so visible changes can still take place.
-    }
 
     Component.onCompleted: internal.moveUserDefinedChildrenToBodyGrid();
 
     QtObject {
         id: internal
 
+        // Toggle between entered and exited when running slide directly in
+        // qmlscene without a deck as the parent (or ancestor).
+
         property bool entered: false
+        property var simulate: slide.entered
+
+        function next() {
+            if (deck) {
+                SS.Navigator.next();
+            } else {
+                simulate();
+            }
+        }
+
+        function previous() {
+            if (deck) {
+                SS.Navigator.previous();
+            } else {
+                simulate();
+            }
+        }
 
         function trigger() {
-            if (!presentation && !entered) {
-                // When a slide is run in qmlscene outside of a presentation
+            if (!deck && !entered) {
+                // When a slide is run in qmlscene outside of a deck
                 // the entered() signal is not initially executed. So if the
                 // user hits [Space] for triggered() we may need to execute the
                 // entered() signal first to duplicate the state the slide will
-                // be in when it appears within a presentation.
+                // be in when it appears within a deck.
                 slide.entered();
             }
             slide.triggered();
@@ -124,7 +133,7 @@ Rectangle {
         font.family: slide.fontFamily
         margin: slide.margin
         text: (title) ? title :
-              (presentation) ? presentation.title : "Slide/Presentation Title"
+              (deck) ? deck.title : "Slide/Deck Title"
         textHeight: 4
     }
 
@@ -152,29 +161,13 @@ Rectangle {
     SS.SlideNumber {
         id: slideNumber
         __current: slide.number
-        __total: (presentation) ? presentation.slideCount : 0
-    }
-
-    QtObject {
-        id: go
-
-        // Toggle between entered and exited when running slide directly in
-        // qmlscene without a presentation as the parent (or ancestor).
-
-        property var nextSignal: slide.entered
-
-        function next(event) {
-            event.accepted = false;
-            if (!presentation) {
-                nextSignal();
-            }
-        }
+        __total: (deck) ? SS.Navigator.slideCount : 0
     }
 
     focus: (visible)
 
     Keys.onEscapePressed: Qt.quit();
-    Keys.onLeftPressed: go.next(event);
-    Keys.onRightPressed: go.next(event);
+    Keys.onLeftPressed: internal.previous();
+    Keys.onRightPressed: internal.next();
     Keys.onSpacePressed: internal.trigger();
 }

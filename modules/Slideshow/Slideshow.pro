@@ -8,12 +8,14 @@ DISTFILES += \
     Box.qml \
     Clock.qml \
     Date.qml \
+    Deck.qml \
+    Fonts.qml \
     Footer.qml \
     Header.qml \
-    Presentation.qml \
+    Navigator.qml \
     Slide.qml \
     SlideNumber.qml \
-    Time.qml \
+    Time.qml
 
 target.path = $$[QT_INSTALL_QML]/Slideshow
 

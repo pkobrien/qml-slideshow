@@ -2,15 +2,13 @@ import QtQuick 2.4
 import Slideshow 1.0 as SS
 import "." as App
 
-Item {
-    id: deck
-    property string title: "External Nested Slides: ROYGBIV"
+SS.Deck {
+    title: "External Nested Slides: ROYGBIV"
     
     Repeater {
         model: ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
 
         App.Slide {
-            title: deck.title
             header.line.width: width
             header.line.height: 6
             header.line.color: Qt.darker(body.color)
