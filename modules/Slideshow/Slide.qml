@@ -21,6 +21,8 @@ Rectangle {
     property alias topLeft: body.topLeft
     property alias topRight: body.topRight
 
+    property string code
+    property string codeFontFamily: "Inconsolata"
     property string fontFamily: "Roboto"
     property int margin: 2  // As percentage of slide height.
     property string text
@@ -45,6 +47,8 @@ Rectangle {
     }
 
     visible: (deck) ? (slide === SS.Navigator.slide) : true
+
+    onCodeChanged: body.code = code;
 
     onEntered: {
         internal.entered = true;
@@ -128,6 +132,8 @@ Rectangle {
         anchors.left: slide.left
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
+        codeFont.family: slide.codeFontFamily
+        codeHeight: 4
         font.family: slide.fontFamily
         margin: slide.margin
         textHeight: 6

@@ -31,4 +31,17 @@ we get 3, 5, 6 and 9. The sum of these multiples is 23."
         onEntered: text = "Press [Space] for the solution.";
         onTriggered: text = solve(1000);
     }
+
+    App.Slide {
+        text: "This is how I solved it:"
+        code: "
+    function solve(max) {
+        var result = 0;
+        for (var i=1; i < max; i++) {
+            result += (i % 3 === 0 || i % 5 === 0) ? i : 0;
+        }
+        return result;
+    }
+"
+    }
 }

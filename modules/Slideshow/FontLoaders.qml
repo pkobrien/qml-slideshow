@@ -3,6 +3,9 @@ import QtQuick 2.4
 Item {
     id: fontLoaders
 
+    FontLoader { source: "fonts/Inconsolata/Inconsolata-Bold.ttf" }
+    FontLoader { source: "fonts/Inconsolata/Inconsolata-Regular.ttf" }
+
     FontLoader { source: "fonts/Roboto/Roboto-Black.ttf" }
     FontLoader { source: "fonts/Roboto/Roboto-BlackItalic.ttf" }
     FontLoader { source: "fonts/Roboto/Roboto-Bold.ttf" }

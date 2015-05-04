@@ -11,6 +11,8 @@ Item {
 
 //    Repeater {
 //        model: [
+//            "fonts/Inconsolata/Inconsolata-Bold.ttf",
+//            "fonts/Inconsolata/Inconsolata-Regular.ttf",
 //            "fonts/Roboto/Roboto-Black.ttf",
 //            "fonts/Roboto/Roboto-BlackItalic.ttf",
 //            "fonts/Roboto/Roboto-Bold.ttf",

@@ -12,6 +12,7 @@ Rectangle {
     property real textHeight
 
     property alias __centralText: centralText
+    property alias __column: column
     property alias __content: content
     property var __slide
 
@@ -28,10 +29,17 @@ Rectangle {
         anchors.fill: content
     }
 
-    Text {
-        id: centralText
+    Column {
+        id: column
+
+        width: childrenRect.width
+        height: childrenRect.height
         anchors.horizontalCenter: content.horizontalCenter
         anchors.verticalCenter: content.verticalCenter
-        font.pixelSize: __slide.units(box.textHeight)
+
+        Text {
+            id: centralText
+            font.pixelSize: __slide.units(box.textHeight)
+        }
     }
 }
