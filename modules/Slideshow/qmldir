@@ -5,6 +5,7 @@ Box 1.0 Box.qml
 Clock 1.0 Clock.qml
 Date 1.0 Date.qml
 Deck 1.0 Deck.qml
+FontLoaders 1.0 FontLoaders.qml
 singleton Fonts 1.0 Fonts.qml
 Footer 1.0 Footer.qml
 Header 1.0 Header.qml

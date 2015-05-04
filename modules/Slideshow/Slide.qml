@@ -7,6 +7,8 @@ Rectangle {
     width: (deck) ? deck.width : 800
     height: (deck) ? deck.height : 600
 
+    SS.FontLoaders {  }  // Temporary bug fix. QML has font loading issues.
+
     property var deck
 
     property alias body: body
@@ -56,7 +58,7 @@ Rectangle {
 
     onTextChanged: body.text = text.trim().split("\n").join(" ");
 
-    Component.onCompleted: internal.moveUserDefinedChildrenToBodyGrid();
+    Component.onCompleted: internal.setup();
 
     QtObject {
         id: internal
@@ -112,6 +114,10 @@ Rectangle {
                 child = userChildren[i];
                 child.parent = body.grid;
             }
+        }
+
+        function setup() {
+            moveUserDefinedChildrenToBodyGrid();
         }
     }
 

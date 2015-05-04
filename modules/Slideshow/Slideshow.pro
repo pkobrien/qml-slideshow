@@ -9,6 +9,7 @@ DISTFILES += \
     Clock.qml \
     Date.qml \
     Deck.qml \
+    FontLoaders.qml \
     Fonts.qml \
     Footer.qml \
     Header.qml \
