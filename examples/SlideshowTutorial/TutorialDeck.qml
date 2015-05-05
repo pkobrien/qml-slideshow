@@ -20,6 +20,16 @@ SS.Deck {
     }
 
     SS.Slide {
+        code: '
+import Slideshow 1.0 as SS
+
+    SS.Slide {
+        text: "This is the simplest type of slide you can create."
+    }
+'
+    }
+
+    SS.Slide {
         text: "
 Other than assigning a string value to a text property (that you see here),
 the header, footer, font, margins, etc. are all default values.
@@ -38,7 +48,7 @@ the body of the slide, up to a point...
     App.Slide {
         title: "Special Text Features"
         text: "
-It will even do text.trim().split(\"\\n\").join(\" \") for you.
+It will even do text.trim().split(\"\\r\\n\").join(\" \") for you.
 And set the horizontal alignment when the line count is greater than one,
 switching from centered to left aligned.
 "
@@ -57,9 +67,39 @@ The difference was in the use of a custom base slide with a modified footer."
     }
 
     App.Slide {
+        title: "Customizing Slide Defaults"
+        text: "Slide.qml"
+        code: '
+import QtQuick 2.4
+import Slideshow 1.0 as SS
+
+SS.Slide {
+    id: slide
+
+    date.format: Locale.LongFormat
+    time.format: Locale.LongFormat
+    numbering.format: "Slide %1 of %2"
+
+    footer.color: "LightSteelBlue"
+    footer.line.width: slide.width
+}
+'
+    }
+
+    App.Slide {
         fontFamily: "Roboto Condensed"
         title: "Customizing Slide Defaults"
         text: "This slide also changes the font family to Roboto Condensed."
+    }
+
+    App.Slide {
+        code: '
+    App.Slide {
+        fontFamily: "Roboto Condensed"
+        title: "Customizing Slide Defaults"
+        text: "This slide also changes the font family..."
+    }
+'
     }
 
     App.HBFDiagramSlide {  }
