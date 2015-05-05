@@ -22,7 +22,9 @@ Rectangle {
     property alias topRight: body.topRight
 
     property string code
+    property alias codeColor: body.codeColor
     property string codeFontFamily: "Inconsolata"
+    property alias codeHeight: body.codeHeight
     property string fontFamily: "Roboto"
     property int margin: 2  // As percentage of slide height.
     property string text
