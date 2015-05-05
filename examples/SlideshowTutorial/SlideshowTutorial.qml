@@ -10,7 +10,5 @@ Window {
 
     App.TutorialDeck {
         id: deck
-
-        anchors.fill: parent
     }
 }

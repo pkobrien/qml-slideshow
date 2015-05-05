@@ -10,7 +10,5 @@ Window {
 
     App.TopDeck {
         id: topDeck
-
-        anchors.fill: parent
     }
 }
