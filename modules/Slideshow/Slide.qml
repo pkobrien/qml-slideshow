@@ -62,7 +62,7 @@ Rectangle {
         internal.simulate = slide.entered;
     }
 
-    onTextChanged: body.text = text.trim().split("\n").join(" ");
+    onTextChanged: body.text = text.trim().split("\r\n").join(" ");
 
     Component.onCompleted: internal.setup();
 
