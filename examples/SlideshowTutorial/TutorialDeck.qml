@@ -23,9 +23,9 @@ SS.Deck {
         code: '
 import Slideshow 1.0 as SS
 
-    SS.Slide {
-        text: "This is the simplest type of slide you can create."
-    }
+SS.Slide {
+    text: "This is the simplest type of slide you can create."
+}
 '
     }
 
@@ -48,16 +48,30 @@ the body of the slide, up to a point...
     App.Slide {
         title: "Special Text Features"
         text: "
-It will even do text.trim().split(\"\\r\\n\").join(\" \") for you.
+It will even apply some text formatting for you.
+
 And set the horizontal alignment when the line count is greater than one,
 switching from centered to left aligned.
 "
     }
 
+    App.Slide {
+        title: "Special Text Features"
+        code: '
+    function format(text) {
+        var temp = text.trim().split("\\r\\n\\r\\n");
+        for (var i = 0; i < temp.length; i++) {
+            temp[i] = temp[i].split("\\r\\n").join(" ");
+        }
+        return temp.join("\\r\\n\\r\\n");
+    }
+'
+    }
+
     SS.Slide {
         title: "Custom Base Slide"
         text: "
-Did you notice anything different on that last slide? Or the next one?"
+Did you notice anything different on the last two slides? Or the next one?"
     }
 
     App.Slide {
@@ -87,13 +101,60 @@ SS.Slide {
     }
 
     App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+    }
+
+    App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+        code: '
+import QtQuick 2.4
+import "." as App
+
+    App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+    }
+'
+    }
+
+    App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+        code: '
+import QtQuick 2.4
+import "." as App
+
+    App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+        code: \'
+import QtQuick 2.4
+import "." as App
+
+    App.Slide {
+        title: "Customized Base Slide"
+        text: "Using this customized slide is easy"
+    }
+\'
+    }
+'
+    }
+
+    App.Slide {
         fontFamily: "Roboto Condensed"
         title: "Customizing Slide Defaults"
         text: "This slide also changes the font family to Roboto Condensed."
     }
 
     App.Slide {
+        fontFamily: "Roboto Condensed"
+        title: "Customizing Slide Defaults"
         code: '
+import QtQuick 2.4
+import "." as App
+
     App.Slide {
         fontFamily: "Roboto Condensed"
         title: "Customizing Slide Defaults"

@@ -23,7 +23,8 @@ Rectangle {
 
     property string code
     property alias codeColor: body.codeColor
-    property string codeFontFamily: "Inconsolata"
+    property alias codeFont: body.codeFont
+    property alias codeFrame: body.codeFrame
     property alias codeHeight: body.codeHeight
     property string fontFamily: "Roboto"
     property int margin: 2  // As percentage of slide height.
@@ -44,13 +45,19 @@ Rectangle {
     signal exited()
     signal triggered()
 
+    function format(text) {
+        var temp = text.trim().split("\r\n\r\n");
+        for (var i = 0; i < temp.length; i++) {
+            temp[i] = temp[i].split("\r\n").join(" ");
+        }
+        return temp.join("\r\n\r\n");
+    }
+
     function units(percent) {
         return Math.floor(slide.height * (percent / 100))
     }
 
     visible: (deck) ? (slide === SS.Navigator.slide) : true
-
-    onCodeChanged: body.code = code;
 
     onEntered: {
         internal.entered = true;
@@ -62,7 +69,9 @@ Rectangle {
         internal.simulate = slide.entered;
     }
 
-    onTextChanged: body.text = text.trim().split("\r\n").join(" ");
+    onCodeChanged: body.code = code.replace(/^[\r\n]+|[\r\n]+$/g,"");
+
+    onTextChanged: body.text = format(text);
 
     Component.onCompleted: internal.setup();
 
@@ -134,7 +143,7 @@ Rectangle {
         anchors.left: slide.left
         anchors.right: slide.right
         anchors.top: (header.visible) ? header.bottom : slide.top
-        codeFont.family: slide.codeFontFamily
+        codeFont.family: "Inconsolata"
         codeHeight: 4
         font.family: slide.fontFamily
         margin: slide.margin

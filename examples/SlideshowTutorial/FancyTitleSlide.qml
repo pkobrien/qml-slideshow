@@ -46,8 +46,7 @@ App.Slide {
         horizontalAlignment: Text.AlignRight
         style: Text.Sunken
         styleColor: "White"
-        text: (slide.presentation) ? slide.presentation.title :
-                                     "Slide Presentation Title"
+        text: (slide.deck) ? slide.deck.title : "Slide Deck Title"
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.WordWrap
     }

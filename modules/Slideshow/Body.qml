@@ -9,10 +9,11 @@ SS.Box {
     property var topLeft
     property var topRight
 
-    property alias code: centralCode.text
-    property alias codeColor: centralCode.color
-    property alias codeFont: centralCode.font
-    property real codeHeight
+    property alias code: body.__code
+    property alias codeColor: body.__codeColor
+    property alias codeFont: body.__codeFont
+    property alias codeFrame: body.__codeFrame
+    property alias codeHeight: body.__codeHeight
 
     __centralText.horizontalAlignment: (__centralText.lineCount > 1) ?
                                        Text.AlignLeft : Text.AlignHCenter
@@ -35,13 +36,6 @@ SS.Box {
 
     onTopRightChanged: {
         internal.anchor(topRight, "top", "right");
-    }
-
-    Text {
-        id: centralCode
-
-        parent: __column
-        font.pixelSize: __slide.units(body.codeHeight)
     }
 
     QtObject {
