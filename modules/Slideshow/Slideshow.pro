@@ -7,6 +7,7 @@ DISTFILES += \
     Body.qml \
     Box.qml \
     Clock.qml \
+    Countdown.qml \
     Date.qml \
     Deck.qml \
     FontLoaders.qml \

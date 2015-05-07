@@ -3,6 +3,7 @@ Banner 1.0 Banner.qml
 Body 1.0 Body.qml
 Box 1.0 Box.qml
 Clock 1.0 Clock.qml
+Countdown 1.0 Countdown.qml
 Date 1.0 Date.qml
 Deck 1.0 Deck.qml
 FontLoaders 1.0 FontLoaders.qml

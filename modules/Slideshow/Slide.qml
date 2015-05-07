@@ -54,7 +54,7 @@ Rectangle {
     }
 
     function units(percent) {
-        return Math.floor(slide.height * (percent / 100))
+        return Math.floor(slide.height * (percent / 100));
     }
 
     visible: (deck) ? (slide === SS.Navigator.slide) : true
