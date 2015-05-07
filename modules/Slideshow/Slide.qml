@@ -132,6 +132,7 @@ Rectangle {
         }
 
         function setup() {
+            SS.Navigator.slide = slide; // Temp assignment to suppress errors.
             moveUserDefinedChildrenToBodyGrid();
         }
     }
