@@ -23,8 +23,6 @@ Item {
             return;
         }
         // Setup navigation using the top-most level deck.
-        SS.Navigator.findSlides(deck);
-        SS.Navigator.index = 0;
         SS.Navigator.topDeck = deck;
     }
 

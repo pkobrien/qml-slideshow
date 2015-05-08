@@ -5,7 +5,7 @@ import QtQuick 2.4
 QtObject {
     id: navigator
     
-    property int index: -1
+    property int index: 0
     property var slide
     property int slideCount: 0
     property var slides: []
@@ -17,6 +17,14 @@ QtObject {
         }
         slide = slides[index];
         slide.entered();
+    }
+
+    onTopDeckChanged: {
+        if (topDeck) {
+            findSlides(topDeck);
+            slide = slides[index];
+            slide.entered();
+        }
     }
     
     function next() {

@@ -188,7 +188,7 @@ Rectangle {
         __total: (deck) ? SS.Navigator.slideCount : 0
     }
 
-    focus: (visible)
+    focus: (deck) ? (slide === SS.Navigator.slide) : true
 
     Keys.onEscapePressed: Qt.quit();
     Keys.onLeftPressed: internal.previous();
