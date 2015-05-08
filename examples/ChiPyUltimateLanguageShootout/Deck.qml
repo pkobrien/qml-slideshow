@@ -6,6 +6,32 @@ import "." as App
 SS.Deck {
     title: "ChiPy Ultimate Language Shootout"
 
+    focus: true
+
+    Keys.onEnterPressed: {
+        countdown.restart();
+    }
+
+    SS.Countdown {
+        id: countdown
+        seconds: 5 * 60  // 5 minutes.
+    }
+
+    App.Slide {
+        header.visible: false;
+        body.color: "Transparent"
+        footer.visible: false;
+
+        text: "QML vs Python"
+        body.font.family: "Roboto Slab"
+        textHeight: 14
+
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "White" }
+            GradientStop { position: 1.0; color: "Silver" }
+        }
+    }
+
     App.Slide {
         text: "
 Pick any programming language. Present and introduce the language
@@ -15,8 +41,8 @@ at the May 14th ChiPy meeting. Do at least 1 comparison to Python.
 
     App.Slide {
         text: "
-Talks should be approximately 5 minutes.
-"
+Talks should be approximately %1 minutes.
+".arg(countdown.remainingText)
     }
 
     App.Slide {
@@ -195,7 +221,7 @@ Window {
 
     Text {
         anchors.centerIn: parent
-        color: "Blue"
+        color: (parent.height < 400) ? "Red" : "Blue"
         font.bold: true
         font.pixelSize: parent.height / 4
         text: parent.width + " by " + parent.height
@@ -209,7 +235,7 @@ Window {
             visible: false
             Text {
                 anchors.centerIn: parent
-                color: "Blue"
+                color: (parent.height < 400) ? "Red" : "Blue"
                 font.bold: true
                 font.pixelSize: parent.height / 4
                 text: parent.width + " by " + parent.height
@@ -222,16 +248,59 @@ Window {
     App.Slide {
         title: "QML Features"
         text: "
-* Bindings
+* Property Binding
 
-* Signals and Slots
+* Signal and Handler Event System
 
-* Scripting (but it's Javascript)
+* Scripting (but it's JavaScript)
 
 * Declarative State Machine Framework
 
 * Unit Testing Framework
 "
+    }
+
+    App.Slide {
+        title: "Randomly-Colored Grid"
+
+        grid.columns: 10
+
+        Repeater {
+            id: repeater
+
+            property var items: []
+
+            function randomColor() {
+                return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
+            }
+
+            model: 100
+
+            onItemAdded: items.push(item);
+
+            Rectangle {
+                border.width: 1
+                width: slide.grid.width / 10
+                height: slide.grid.height / 10
+
+                Text {
+                    anchors.centerIn: parent
+                    color: Qt.darker(parent.color)
+                    font.family: slide.fontFamily
+                    font.pixelSize: slide.units(slide.textHeight)
+                    text: modelData
+                }
+            }
+        }
+
+        function update() {
+            for (var i = 0; i < repeater.items.length; i++) {
+                repeater.items[i].color = repeater.randomColor();
+            }
+        }
+
+        onEntered: update();
+        onTriggered: update();
     }
 
     App.Slide {
