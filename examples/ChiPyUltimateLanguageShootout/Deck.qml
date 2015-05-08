@@ -53,17 +53,19 @@ and the winner takes home $100s in cash.
     }
 
     App.Slide {
-        text: "QML vs. Python"
+        text: "QML vs Python"
+        textHeight: 2
     }
 
     App.Slide {
-        text: "QML vs. Python"
-        textHeight: 9
-    }
-
-    App.Slide {
-        text: "QML vs. Python"
-        textHeight: 15
+        body.text: "QML vs Python"
+        body.font.family: "Roboto Slab"
+        textHeight: 2
+        Behavior on textHeight {
+            NumberAnimation { duration: 2000 }
+        }
+        onEntered: textHeight = 15
+        onExited: textHeight = 2
     }
 
     App.Slide {
@@ -83,6 +85,7 @@ and the winner takes home $100s in cash.
 
     App.Slide {
         title: "Your Presenter Boasted"
+        body.margin: margin * 6
         text: '
 "If you think Python is Pythonic, wait until you see QML
 from the point of view of an experienced Python developer."
@@ -155,7 +158,7 @@ QML:
 
 * declarative, hierarchical, object-based
 
-* UI-centric (plus DSMF)
+* UI-centric (plus DSM Framework)
 
 * easy to write, read, refactor
 
@@ -258,6 +261,62 @@ Window {
 
 * Unit Testing Framework
 "
+    }
+
+    App.Slide {
+        title: "Sample QML Code"
+        codeHeight: 3
+        code: '
+Window {
+    id: window
+    width: 640; height: 480
+
+    function randomColor() {
+        return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
+    }
+
+    Text {
+        id: someText
+        property int count: 0
+        anchors.centerIn: parent
+        text: "Color Changes: " + count
+        onColorChanged: count += 1;
+        onCountChanged: if (count > 10) text = "Please Stop";
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: someText.color = window.randomColor();
+    }
+}
+'
+        Window {
+            id: window4
+            width: 640
+            height: 480
+            visible: false
+
+            function randomColor() {
+                return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
+            }
+
+            Text {
+                id: someText
+                property int count: 0
+                anchors.centerIn: parent
+                font.pixelSize: parent.height / 6
+                text: "Color Changes: " + count
+                onColorChanged: count += 1;
+                onCountChanged: if (count > 10) text = "Please Stop";
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: someText.color = window4.randomColor();
+            }
+        }
+        onExited: window4.visible = false;
+        onTriggered: window4.visible = true;
     }
 
     App.Slide {

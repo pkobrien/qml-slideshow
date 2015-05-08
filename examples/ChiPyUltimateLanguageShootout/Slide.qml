@@ -22,4 +22,13 @@ SS.Slide {
         when: (countdown.remaining < 0)
         value: countdown.remainingText + " (Overtime)"
     }
+
+    onEntered: body.opacity = 0;
+
+    OpacityAnimator on body.opacity {
+        from: 0
+        to: 1
+        duration: 1000
+        running: (slide.active)
+    }
 }
