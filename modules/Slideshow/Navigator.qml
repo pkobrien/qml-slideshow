@@ -23,6 +23,7 @@ QtObject {
         if (topDeck) {
             findSlides(topDeck);
             slide = slides[index];
+            slide.forceActiveFocus();  // Shouldn't be necessary. Qt bug fix.
             slide.entered();
         }
     }

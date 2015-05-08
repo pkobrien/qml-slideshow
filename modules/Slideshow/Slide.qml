@@ -39,6 +39,8 @@ Rectangle {
 
     property int number: 0
 
+    readonly property bool active: (deck) ? (slide === SS.Navigator.slide) :
+                                            true
     readonly property bool isSlide: true
 
     signal entered()
@@ -57,7 +59,7 @@ Rectangle {
         return Math.floor(slide.height * (percent / 100));
     }
 
-    visible: (deck) ? (slide === SS.Navigator.slide) : true
+    visible: (active)
 
     onEntered: {
         internal.entered = true;
@@ -188,7 +190,7 @@ Rectangle {
         __total: (deck) ? SS.Navigator.slideCount : 0
     }
 
-    focus: (deck) ? (slide === SS.Navigator.slide) : true
+    focus: (active)
 
     Keys.onEscapePressed: Qt.quit();
     Keys.onLeftPressed: internal.previous();
