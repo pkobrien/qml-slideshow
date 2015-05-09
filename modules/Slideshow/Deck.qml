@@ -28,7 +28,7 @@ Item {
 
     function assignDeckToSlides(obj) {
         var child;
-        for (var i = 0; i < obj.children.length; i++) {
+        for (var i = 0, len = obj.children.length; i < len; i++) {
             child = obj.children[i];
             if (child.isDeck) {
                 continue;

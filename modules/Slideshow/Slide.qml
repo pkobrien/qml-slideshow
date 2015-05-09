@@ -43,6 +43,8 @@ Rectangle {
                                             true
     readonly property bool isSlide: true
 
+    property bool ready: false
+
     signal entered()
     signal exited()
     signal triggered()
@@ -91,6 +93,7 @@ Rectangle {
                 SS.Navigator.next();
             } else {
                 simulate();
+                slide.ready = !slide.ready;
             }
         }
 
@@ -99,6 +102,7 @@ Rectangle {
                 SS.Navigator.previous();
             } else {
                 simulate();
+                slide.ready = !slide.ready;
             }
         }
 
@@ -110,6 +114,7 @@ Rectangle {
                 // entered() signal first to duplicate the state the slide will
                 // be in when it appears within a deck.
                 slide.entered();
+                slide.ready = true;
             }
             slide.triggered();
         }

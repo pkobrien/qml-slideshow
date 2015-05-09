@@ -29,6 +29,6 @@ SS.Slide {
         from: 0
         to: 1
         duration: 1000
-        running: (slide.active)
+        running: (slide.ready)
     }
 }

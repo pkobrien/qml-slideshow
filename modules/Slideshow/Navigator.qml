@@ -12,22 +12,29 @@ QtObject {
     property var topDeck
     
     onIndexChanged: {
-        if (slide) {
-            slide.exited();
-        }
-        slide = slides[index];
-        slide.entered();
+        activate(index);
     }
 
     onTopDeckChanged: {
         if (topDeck) {
             findSlides(topDeck);
-            slide = slides[index];
-            slide.forceActiveFocus();  // Shouldn't be necessary. Qt bug fix.
-            slide.entered();
+            slide = undefined;
+            activate(0);
         }
     }
-    
+
+    function activate(index) {
+        if (slide) {
+            slide.ready = false;
+            slide.exited();
+        }
+        slide = slides[index];
+        if (slide) {
+            slide.entered();
+            slide.ready = true;
+        }
+    }
+
     function next() {
         index = Math.min(index + 1, slides.length - 1);
     }
@@ -38,7 +45,7 @@ QtObject {
     
     function findSlides(obj) {
         var child;
-        for (var i = 0; i < obj.children.length; i++) {
+        for (var i = 0, len = obj.children.length; i < len; i++) {
             child = obj.children[i];
             if (child.isSlide) {
                 slideCount++;
