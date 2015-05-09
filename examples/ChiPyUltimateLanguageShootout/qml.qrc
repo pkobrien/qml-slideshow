@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Deck.qml</file>
+        <file>Presentation.qml</file>
+        <file>Slide.qml</file>
+    </qresource>
+</RCC>
