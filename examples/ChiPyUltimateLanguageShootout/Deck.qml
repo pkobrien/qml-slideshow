@@ -23,12 +23,38 @@ SS.Deck {
         footer.visible: false;
 
         text: "QML vs Python"
+        body.font.bold: true
         body.font.family: "Roboto Slab"
         textHeight: 14
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: "White" }
             GradientStop { position: 1.0; color: "Silver" }
+        }
+    }
+
+    App.Slide {
+        header.visible: false;
+        body.color: "Transparent"
+        footer.visible: false;
+
+        image.source: "poster.jpeg"
+        image.anchors.fill: image.parent
+        image.fillMode: Image.Tile
+        image.opacity: 0.3
+        image.sourceSize.height: 300
+
+        text: "QML vs Python"
+        body.font.bold: true
+        body.font.family: "Roboto Slab"
+        textHeight: 14
+
+        body.__centralText.style: Text.Raised
+        body.__centralText.styleColor: "Yellow"
+
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "White" }
+            GradientStop { position: 1.0; color: "Black" }
         }
     }
 
@@ -59,6 +85,7 @@ and the winner takes home $100s in cash.
 
     App.Slide {
         body.text: "QML vs Python"
+        body.font.bold: true
         body.font.family: "Roboto Slab"
         textHeight: 2
         Behavior on textHeight {
@@ -405,4 +432,37 @@ Namespaces are one honking great idea -- let's do more of those!
         title: "QML and Python go great together"
         text: 'Perhaps one day there will be "The Zen of QML"'
     }
+
+    App.Slide {
+        header.visible: false;
+        body.color: "Transparent"
+        footer.visible: false;
+
+        image.source: "gunslinger.jpg"
+        image.anchors.fill: image.parent
+
+        body.text: "QML vs Python"
+        body.font.bold: true
+        body.font.family: "Roboto Slab"
+        body.__centralText.style: Text.Raised
+        body.__centralText.styleColor: "Yellow"
+        textHeight: 2
+        Behavior on textHeight {
+            NumberAnimation { duration: 2000 }
+        }
+        Behavior on image.opacity {
+            NumberAnimation { duration: 3000 }
+        }
+
+        onEntered: {
+            image.opacity = 0.3
+            textHeight = 15
+        }
+
+        onExited: {
+            image.opacity = 1.0
+            textHeight = 2
+        }
+    }
+
 }
