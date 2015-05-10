@@ -27,6 +27,7 @@ Rectangle {
     property alias codeFrame: body.codeFrame
     property alias codeHeight: body.codeHeight
     property string fontFamily: "Roboto"
+    property alias image: image
     property int margin: 2  // As percentage of slide height.
     property string text
     property alias textColor: body.textColor
@@ -126,8 +127,8 @@ Rectangle {
             for (i = 0; i < children.length; i++) {
                 child = children[i];
                 switch (child) {
-                    // Skip existing children: header, body, footer.
-                    case header: case body: case footer:
+                    // Skip existing children: image, header, body, footer.
+                    case image: case header: case body: case footer:
                         continue;
                 }
                 userChildren.push(children[i]);
@@ -142,6 +143,10 @@ Rectangle {
             SS.Navigator.slide = slide; // Temp assignment to suppress errors.
             moveUserDefinedChildrenToBodyGrid();
         }
+    }
+
+    Image {
+        id: image
     }
 
     SS.Body {
