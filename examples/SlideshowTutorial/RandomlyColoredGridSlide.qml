@@ -12,14 +12,23 @@ App.Slide {
 
     grid.columns: 10
 
+    property var items: []
+
+    function randomColor() {
+        return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
+    }
+
+    function update() {
+        for (var i = 0, len = items.length; i < len; i++) {
+            items[i].color = randomColor();
+        }
+    }
+
+    onEntered: update();
+    onTriggered: update();
+
     Repeater {
         id: repeater
-
-        property var items: []
-
-        function randomColor() {
-            return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
-        }
 
         model: 100
 
@@ -39,13 +48,4 @@ App.Slide {
             }
         }
     }
-
-    function update() {
-        for (var i = 0; i < repeater.items.length; i++) {
-            repeater.items[i].color = repeater.randomColor();
-        }
-    }
-
-    onEntered: update();
-    onTriggered: update();
 }
