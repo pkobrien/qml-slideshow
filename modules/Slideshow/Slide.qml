@@ -7,7 +7,7 @@ Rectangle {
     width: (deck) ? deck.width : 800
     height: (deck) ? deck.height : 600
 
-    SS.FontLoaders {  }  // Temporary bug fix. QML has font loading issues.
+    SS.FontLoaders { id: fix }  // Temporary fix. QML has font loading issues.
 
     property var deck
 
@@ -127,9 +127,13 @@ Rectangle {
             for (i = 0; i < children.length; i++) {
                 child = children[i];
                 switch (child) {
-                    // Skip existing children: image, header, body, footer.
-                    case image: case header: case body: case footer:
+                    // Skip existing children.
+                    case fix: case image: case header: case body: case footer:
                         continue;
+                }
+                if (child.toString().indexOf("QQuickRepeater") === 0) {
+                    // Skip repeaters, otherwise they recreate their delegates.
+                    continue;
                 }
                 userChildren.push(children[i]);
             }
