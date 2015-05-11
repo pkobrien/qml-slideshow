@@ -17,6 +17,8 @@ SS.Deck {
         seconds: 5 * 60  // 5 minutes.
     }
 
+    App.GameOfLifeSlide {  }
+
     App.Slide {
         header.visible: false;
         body.color: "Transparent"
@@ -351,14 +353,24 @@ Window {
 
         grid.columns: 10
 
+
+        function randomColor() {
+            return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
+        }
+
+        function update() {
+            for (var i = 0; i < repeater.items.length; i++) {
+                repeater.items[i].color = randomColor();
+            }
+        }
+
+        onEntered: update();
+        onTriggered: update();
+
         Repeater {
             id: repeater
 
             property var items: []
-
-            function randomColor() {
-                return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
-            }
 
             model: 100
 
@@ -378,15 +390,6 @@ Window {
                 }
             }
         }
-
-        function update() {
-            for (var i = 0; i < repeater.items.length; i++) {
-                repeater.items[i].color = repeater.randomColor();
-            }
-        }
-
-        onEntered: update();
-        onTriggered: update();
     }
 
     App.Slide {
@@ -441,17 +444,26 @@ Namespaces are one honking great idea -- let's do more of those!
         image.source: "gunslinger.jpg"
         image.anchors.fill: image.parent
 
+        bottomRight: Text {
+            text: "Image courtesy of https://www.flickr.com/photos/jameson42/4202217374/in/pool-1363261@N24"
+            font.family: "Roboto Condensed"
+            font.pixelSize: slide.units(3)
+            color: "Gray"
+        }
+
         body.text: "QML vs Python"
         body.font.bold: true
         body.font.family: "Roboto Slab"
         body.__centralText.style: Text.Raised
         body.__centralText.styleColor: "Yellow"
+
         textHeight: 2
+
         Behavior on textHeight {
             NumberAnimation { duration: 2000 }
         }
         Behavior on image.opacity {
-            NumberAnimation { duration: 3000 }
+            NumberAnimation { duration: 4000 }
         }
 
         onEntered: {
