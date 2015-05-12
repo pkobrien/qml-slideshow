@@ -21,28 +21,6 @@ App.Slide {
         return x + y * grid.columns;
     }
 
-    function colorize(cells, indices, func) {
-        if (indices) {
-            indices.forEach(function(index) {
-                cells[index].color = func.call(null, index); });
-        } else {
-            cells.forEach(function(cell) { cell.color = func.call(); });
-        }
-    }
-
-    function colorNewborn(index) {
-        var neigh = neighbors(index);
-        var colors = [];
-        for (var i = 0; i < 8; i++) {
-            if (living.indexOf(neigh[i]) !== -1) {
-                colors.push(neigh[i]);
-            }
-        }
-        return Qt.rgba(cells[colors[0]].color.r,
-                       cells[colors[1]].color.g,
-                       cells[colors[2]].color.b, 1.0);
-    }
-
     function cycle() {
         if (!living.length) {
             return;
@@ -63,7 +41,7 @@ App.Slide {
         var recalc = [];
         for (i = 0, len = living.length; i < len; i++) {
             alive = living[i];
-            nearby = [alive].concat(neighbors(alive));
+            nearby = [alive].concat(cells[alive].neighbors);
             for (j = 0; j < 9; j++) {
                 if (recalc.indexOf(nearby[j]) === -1) {
                     recalc.push(nearby[j]);
@@ -73,7 +51,7 @@ App.Slide {
         for (i = 0, len = recalc.length; i < len; i++) {
             count = 0;
             index = recalc[i];
-            neigh = neighbors(index);
+            neigh = cells[index].neighbors;
             for (j = 0; j < 8; j++) {
                 if (living.indexOf(neigh[j]) !== -1) {
                     count++;
@@ -94,8 +72,8 @@ App.Slide {
                 newDead.push(alive)
             }
         }
-        colorize(cells, newBorn, colorNewborn);
-        colorize(cells, newDead, function() { return "White"; });
+        newBorn.forEach(function(index) { cells[index].born(); });
+        newDead.forEach(function(index) { cells[index].died(); });
         living = nextgen;
     }
 
@@ -103,20 +81,40 @@ App.Slide {
         var x = index % grid.columns;
         var y = Math.floor(index / grid.columns);
         var neigh = [];
-        neigh.push(cellIndex(x, (y + 1) % grid.rows));
-        neigh.push(cellIndex((x + 1) % grid.columns, (y + 1) % grid.rows));
-        neigh.push(cellIndex((x + 1) % grid.columns, y));
-        neigh.push(cellIndex((x + 1) % grid.columns, (y - 1) % grid.rows));
-        neigh.push(cellIndex(x, (y - 1) % grid.rows));
-        neigh.push(cellIndex((x - 1) % grid.columns, (y - 1) % grid.rows));
-        neigh.push(cellIndex((x - 1) % grid.columns, y));
-        neigh.push(cellIndex((x - 1) % grid.columns, (y + 1) % grid.rows));
+        var i, j;
+        for (i = -1; i < 2; i++) {
+            for (j = -1; j < 2; j++) {
+                if (i === 0 && j === 0) {
+                    continue;
+                }
+                neigh.push(cellIndex(toroidX(x + i), toroidY(y + j)));
+            }
+        }
         return neigh;
+    }
+
+    function toroidN(n, constraint) {
+        if (n >= 0) {
+            if (n < constraint) {
+                return n;
+            }
+            return n - constraint;
+        }
+        return n + constraint;
+    }
+
+    function toroidX(x) {
+        return toroidN(x, grid.columns);
+    }
+
+    function toroidY(y) {
+        return toroidN(y, grid.rows);
     }
 
     function populate() {
         living = randomPopulation();
-        colorize(cells, living, randomColor);
+        living.forEach(function(index) {
+            cells[index].init(); });
     }
 
     function randomColor() {
@@ -124,12 +122,12 @@ App.Slide {
     }
 
     function randomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      return Math.floor(Math.random() * (max - min)) + min;
     }
 
     function randomPopulation() {
         var area = grid.columns * grid.rows;
-        var count = randomInt(Math.floor(area / 20), Math.floor(area / 4));
+        var count = randomInt(Math.floor(area / 20), Math.floor(area / 6));
         var index;
         var pop = [];
         for (var i = 0; i < count; i++) {
@@ -143,7 +141,7 @@ App.Slide {
 
     function reset() {
         timer.stop();
-        colorize(cells, null, function() { return "#eeeeee"; });
+        cells.forEach(function(cell) { cell.reset(); });
         generations = 0;
     }
 
@@ -162,7 +160,6 @@ App.Slide {
     }
 
     Repeater {
-        id: repeater
 
         model: grid.columns * grid.rows
 
@@ -174,6 +171,38 @@ App.Slide {
             border.color: Qt.lighter(color)
             border.width: 1
             color: "#eeeeee"
+
+            property var neighbors
+
+            function born() {
+                // Get the colors of the 3 living neighbors.
+                var colors = [];
+                for (var i = 0; i < 8; i++) {
+                    if (living.indexOf(neighbors[i]) !== -1) {
+                        colors.push(cells[neighbors[i]].color);
+                    }
+                }
+                color = Qt.rgba(colors[0].r, colors[1].g, colors[2].b, 1.0);
+            }
+
+            function died() {
+                color = "White";
+            }
+
+            function init() {
+                color = randomColor();
+            }
+
+            function reset() {
+                color = "#eeeeee";
+            }
         }
     }
+
+    Component.onCompleted: {
+        cells.forEach(function(cell, index) {
+            cell.neighbors = slide.neighbors(index); })
+    }
+
+    Keys.onDeletePressed: { reset(); populate(); }
 }
