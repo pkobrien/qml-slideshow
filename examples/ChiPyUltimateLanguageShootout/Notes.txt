@@ -27,7 +27,7 @@
 
 [4:00]
 
-12. So let's take a look at some QML code. Every graphical UI needs a Window,
+11. So let's take a look at some QML code. Every graphical UI needs a Window,
     and this is how you declare one in QML. Imagine a simple text file named
     example.qml with the code you see here. When this is executed by the QML
     Engine you see the following window. [Hit Spacebar]
@@ -41,8 +41,9 @@
 
     This example is simple, but also very boring.
 
-13. QML has some very powerful features, like property bindings and a great
-    signal and event handling system. It even allows scripting! (in Javascript)
+12. QML is anything but boring, with powerful features like property bindings
+    and a great signal and event handling system. It even allows scripting!
+    (in Javascript)
 
 [3:00]
 
@@ -59,7 +60,7 @@
 
     Likewise, the Text object's size, position, color and value all change
     automatically thanks to property bindings and javascript expressions. For
-    examples, the height of the text font is always 1/4th of the window height.
+    example, the height of the text font is always 1/4th of the window height.
 
 [1:30]
 
@@ -80,12 +81,13 @@
     that we have added to the someText object.
 
     QML automatically provides "onPropertyNameChanged" handlers for all object
-    properties, even user-defined properties. So we have an "onCountChanged"
-    handler where we change the text value when count is greater than ten.
+    properties, even user-defined properties. So we even have an
+    "onCountChanged" handler for our user-defined count property, where we
+    update the text value when count is greater than ten.
 
-15. With all this QML power in your hands, you might even think about creating a
-    slideshow presentation system. One where you could even have an old-school
-    Game of Life simulation running inside one of your slides.
+15. With all the features that QML provides, surely someone would use QML to
+    create a slideshow presentation system. One where you could even have an
+    old-school Game of Life simulation running inside one of your slides.
 
 16. Or a fancier color version. Maybe I should have named this presentation ...
 
