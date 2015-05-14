@@ -1,0 +1,82 @@
+1. [Teaser slide w/ GOL] Hello!
+
+2. Thank you for coming here tonight.
+
+3. We were asked to pick a language and compare it to Python.
+
+4. Giving you a chance to vote on your favorite presentation.
+
+5. And we need to do it in 5 minutes, so let me get started. [Start Countdown]
+
+6. The language I picked is QML.
+
+7. And I said "If you think Python is Pythonic, wait until you see
+   QML from the point of view of an experienced Python developer.
+
+8. Python, of course, is the general purpose language you all know and love.
+
+9. And the notion of being "Pythonic" is pretty well captured in
+   "The Zen of Python" by Tim Peters, otherwise known as "import this".
+
+10. However, if you want to create a graphical user interface for your
+    application, you won't find what you need in the Python standard library.
+    And that's where something like QML comes in. QML is primarily for
+    creating user interfaces, by declaring a hierarchy of visual objects and
+    their properties. And while there isn't yet a "Zen of QML", there is
+    something about QML that, at least to me, feels rather "Pythonic".
+
+12. So let's take a look at some QML code. Every graphical UI needs a Window,
+    and this is how you declare one in QML. Imagine a simple text file named
+    example.qml with the code you see here. When this is executed by the QML
+    Engine you see the following window. [Hit Spacebar]
+
+    The first two lines of code are import statements that setup the QML
+    environment and allow us to declare objects. "Window" is a built-in object
+    type, and we can declare a Window object instance by typing it's name
+    -- "Window" -- followed by curly braces. Within the curly braces we can
+    assign property values, which we have done here to set the width, height,
+    and title.
+
+    This example is simple, but also very boring.
+
+13. QML has some very powerful features, like property bindings and a great
+    signal and event handling system. It even allows scripting! (in Javascript)
+
+13. In this second example we've changed the title and introduced a Text object.
+
+    The Window title is no longer a static string. This time it's a javascript
+    expression that concatenates some text with the "x" and "y" properties of
+    Window. Whenever the QML Engine detects a depency within a property binding,
+    such as the depency title has on "x" and "y", it automatically reevalutes
+    the expression whenever a dependent value changes, which automatically
+    updates the property. Here you can see the title changes when we move the
+    Window.
+
+    Likewise, the Text object's size, position, color and value all change
+    automatically thanks to property bindings and javascript expressions. For
+    examples, the height of the text font is always 1/4th of the window height.
+
+14. In this final example we've added a mouse area that fills the entire window.
+    When we click on it, QML emits a "clicked" signal which we can handle in the
+    onClicked handler where we have some javascript code that sets the text
+    object's color to a random color provided by a function defined within the
+    Window object. We're able to reference the window and text objects by their
+    id values: window and someText. Every time the color of someText changes,
+    we increment a counter in the onColorChanged handler. The counter that we
+    increment is an integer property that we have added to the someText object.
+    QML automatically provides "onPropertyNameChanged" handlers for all object
+    properties, even user-defined properties. So we have an "onCountChanged"
+    handler where we change the text value when count is greater than ten.
+
+    In action, it looks like this...
+
+15. With all this power in your hands, you might even think about creating a
+    slideshow presentation system. One where you could even have an old-school
+    Game of Life simulation running inside one of your slides.
+
+16. Or a fancier color version. Maybe I should have named this presentation ...
+
+17. ... "QML vs PowerPoint"
+
+18. Indeed, this presentation was written in QML using QML Slideshow.
+    All of the code is available on GitHub.

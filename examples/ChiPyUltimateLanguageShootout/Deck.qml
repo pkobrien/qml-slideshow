@@ -148,7 +148,7 @@ Namespaces are one honking great idea -- let's do more of those!
         title: "What is QML?"
         body.margin: margin * 5
         text: "
-QML:
+QML (Qt Meta Language):
 
 * UI-centric (fully supported by PyQt)
 
@@ -162,6 +162,7 @@ QML:
 
     App.Slide {
         title: "QML Code Sample 1"
+        text: "example.qml"
         code: '
 import QtQuick 2.4
 import QtQuick.Window 2.2
@@ -211,7 +212,7 @@ Window {
 
     Text {
         anchors.centerIn: parent
-        color: (parent.height < 400) ? "Red" : "Blue"
+        color: (parent.height < 300) ? "Red" : "Blue"
         font.bold: (parent.height > parent.width / 2)
         font.pixelSize: parent.height / 4
         text: parent.width + " by " + parent.height
@@ -226,7 +227,7 @@ Window {
             visible: false
             Text {
                 anchors.centerIn: parent
-                color: (parent.height < 400) ? "Red" : "Blue"
+                color: (parent.height < 300) ? "Red" : "Blue"
                 font.bold: (parent.height < parent.width / 2)
                 font.pixelSize: parent.height / 4
                 text: parent.width + " by " + parent.height
@@ -298,94 +299,6 @@ Window {
         onTriggered: window4.visible = true;
     }
 
-//    App.Slide {
-//        title: "Randomly-Colored Grid"
-
-//        grid.columns: 10
-
-
-//        function randomColor() {
-//            return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0);
-//        }
-
-//        function update() {
-//            for (var i = 0; i < repeater.items.length; i++) {
-//                repeater.items[i].color = randomColor();
-//            }
-//        }
-
-//        onEntered: update();
-//        onTriggered: update();
-
-//        Repeater {
-//            id: repeater
-
-//            property var items: []
-
-//            model: 100
-
-//            onItemAdded: items.push(item);
-
-//            Rectangle {
-//                border.width: 1
-//                width: slide.grid.width / 10
-//                height: slide.grid.height / 10
-
-//                Text {
-//                    anchors.centerIn: parent
-//                    color: Qt.darker(parent.color)
-//                    font.family: slide.fontFamily
-//                    font.pixelSize: slide.units(slide.textHeight)
-//                    text: modelData
-//                }
-//            }
-//        }
-//    }
-
-//    App.Slide {
-//        title: 'Returning to "The Zen of Python"'
-//        codeHeight: 3
-//        code: "
-//>>> import this
-//The Zen of Python, by Tim Peters
-
-//Beautiful is better than ugly.
-//Explicit is better than implicit.
-//Simple is better than complex.
-//Complex is better than complicated.
-//Flat is better than nested.
-//Sparse is better than dense.
-//Readability counts.
-//Special cases aren't special enough to break the rules.
-//Although practicality beats purity.
-//Errors should never pass silently.
-//Unless explicitly silenced.
-//In the face of ambiguity, refuse the temptation to guess.
-//There should be one-- and preferably only one --obvious way to do it.
-//Although that way may not be obvious at first unless you're Dutch.
-//Now is better than never.
-//Although never is often better than *right* now.
-//If the implementation is hard to explain, it's a bad idea.
-//If the implementation is easy to explain, it may be a good idea.
-//Namespaces are one honking great idea -- let's do more of those!
-//"
-//    }
-
-//    App.Slide {
-//        title: deck.subtitle
-//        text: "QML can be as Pythonic as Python"
-//    }
-
-//    App.Slide {
-//        title: "Does that mean QML loses?"
-//        text: "Although it is hard to find examples of this..."
-//    }
-
-//    App.Slide {
-//        title: "QML and Python go great together"
-//        text: 'Perhaps one day there will be "The Zen of QML"'
-//    }
-
     App.GameOfLifeSlide {
         black: true
         grid.columns: 50
@@ -412,7 +325,7 @@ Window {
             color: "Gray"
         }
 
-        body.text: deck.subtitle
+        body.text: "QML vs PowerPoint"
         body.font.bold: true
         body.font.family: "Roboto Slab"
         body.__centralText.style: Text.Raised
@@ -429,7 +342,7 @@ Window {
 
         onEntered: {
             image.opacity = 0.3
-            textHeight = 15
+            textHeight = 12
         }
 
         onExited: {
