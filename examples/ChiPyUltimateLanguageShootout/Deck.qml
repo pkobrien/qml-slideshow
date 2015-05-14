@@ -11,8 +11,10 @@ SS.Deck {
     focus: true
 
     Keys.onEnterPressed: {
-        countdown.restart();
+        countdown.running = !countdown.running;
     }
+
+    Keys.onAsteriskPressed: countdown.restart();
 
     SS.Countdown {
         id: countdown
@@ -24,22 +26,6 @@ SS.Deck {
         grid.columns: 50
         grid.rows: 30
         interval: 500
-    }
-
-    App.Slide {
-        header.visible: false;
-        body.color: "Transparent"
-        footer.visible: false;
-
-        text: deck.subtitle
-        body.font.bold: true
-        body.font.family: "Roboto Slab"
-        textHeight: 14
-
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "White" }
-            GradientStop { position: 1.0; color: "Silver" }
-        }
     }
 
     App.Slide {
@@ -68,13 +54,18 @@ SS.Deck {
     }
 
     App.Slide {
+        body.margin: margin * 6
         text: "
-Pick any programming language. Present and introduce the language
-at the May 14th ChiPy meeting. Do at least 1 comparison to Python.
+* Pick any programming language.
+
+* Present and introduce the language.
+
+* Do at least 1 comparison to Python.
 "
     }
 
     App.Slide {
+        body.margin: margin * 6
         text: "
 Audience members will vote on their favorite presentation
 and the winner takes home $100s in cash.
@@ -100,7 +91,7 @@ Talks should be approximately %1 minutes.
     }
 
     App.Slide {
-        title: "Your Presenter Boasted"
+        title: "Your presenter boasted:"
         body.margin: margin * 6
         text: '
 "If you think Python is Pythonic, wait until you see QML
@@ -108,106 +99,9 @@ from the point of view of an experienced Python developer."
 '
     }
 
-//    App.Slide {
-//        title: "Your Presenter"
-//        text: "Patrick Keith O'Brien"
-//    }
-
-//    App.Slide {
-//        title: "Your Presenter"
-//        text: "Pythonista since 1999"
-//    }
-
-//    App.Slide {
-//        title: "Your Presenter"
-//        text: "Worked with wxPython, PyGTK, PyQt"
-//    }
-
-//    App.Slide {
-//        title: "What is QML?"
-//        text: "
-//QML, the Qt Meta Language or Qt Modeling Language, is a declarative
-//language supported by the Qt application framework and GUI toolkit
-//(written in C++).
-//"
-//    }
-
-//    App.Slide {
-//        title: "What does it mean to be Pythonic?"
-//        codeHeight: 3
-//        code: "
-//>>> import this
-//The Zen of Python, by Tim Peters
-
-//Beautiful is better than ugly.
-//Explicit is better than implicit.
-//Simple is better than complex.
-//Complex is better than complicated.
-//Flat is better than nested.
-//Sparse is better than dense.
-//Readability counts.
-//Special cases aren't special enough to break the rules.
-//Although practicality beats purity.
-//Errors should never pass silently.
-//Unless explicitly silenced.
-//In the face of ambiguity, refuse the temptation to guess.
-//There should be one-- and preferably only one --obvious way to do it.
-//Although that way may not be obvious at first unless you're Dutch.
-//Now is better than never.
-//Although never is often better than *right* now.
-//If the implementation is hard to explain, it's a bad idea.
-//If the implementation is easy to explain, it may be a good idea.
-//Namespaces are one honking great idea -- let's do more of those!
-//"
-//    }
-
-//    App.Slide {
-//        title: deck.subtitle
-//        text: '
-//Working with QML gives me the same good *feelings* as when I work with Python.
-//'
-//    }
-
-//    App.Slide {
-//        title: deck.subtitle
-//        topLeft: Text {
-//            font.family: slide.fontFamily
-//            font.pixelSize: slide.units(slide.textHeight - 2)
-//            width: slide.grid.width / 2
-//            wrapMode: Text.WordWrap
-//            text: "
-//Python:
-
-//* procedural, functional, object-oriented
-
-//* general purpose (not UI-centric)
-
-//* easy to write, read, refactor
-
-//* one and only one obvious way
-//".trim()
-//            }
-//        topRight: Text {
-//            font.family: slide.fontFamily
-//            font.pixelSize: slide.units(slide.textHeight - 2)
-//            width: slide.grid.width / 2
-//            wrapMode: Text.WordWrap
-//            text: "
-//QML:
-
-//* declarative, hierarchical, object-based
-
-//* UI-centric (plus DSM Framework)
-
-//* easy to write, read, refactor
-
-//* no obvious way, many wrong ways
-//".trim()
-//            }
-//    }
-
     App.Slide {
-        title: deck.subtitle
+        title: "What is Python?"
+        body.margin: margin * 5
         text: "
 Python:
 
@@ -222,7 +116,37 @@ Python:
     }
 
     App.Slide {
-        title: deck.subtitle
+        title: "What does it mean to be Pythonic?"
+        codeHeight: 3
+        code: "
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+"
+    }
+
+    App.Slide {
+        title: "What is QML?"
+        body.margin: margin * 5
         text: "
 QML:
 
@@ -273,29 +197,6 @@ Window {
 * Unit Testing Framework
 "
     }
-
-//    App.Slide {
-//        title: "QML Code Sample"
-//        code: '
-//import QtQuick 2.4
-//import QtQuick.Window 2.2
-
-//Window {
-//    width: 640
-//    height: 480
-//    title: "Simple Demo: " + width + " by " + height
-//}
-//'
-//        Window {
-//            id: window2
-//            width: 640
-//            height: 480
-//            title: "Simple Demo: " + width + " by " + height
-//            visible: false
-//        }
-//        onExited: window2.visible = false;
-//        onTriggered: window2.visible = true;
-//    }
 
     App.Slide {
         title: "QML Code Sample 2"
