@@ -11,9 +11,11 @@ QtObject {
     readonly property int remaining: timer.remaining
     readonly property string remainingText: timer.remainingText
 
-    readonly property bool running: timer.running
+    property bool running: false
 
     readonly property var stop: timer.stop
+
+    onRunningChanged: { var result = (running) ? start() : stop(); }
 
     function restart() {
         timer.begin = 0;
