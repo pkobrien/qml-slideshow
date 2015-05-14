@@ -11,8 +11,10 @@ App.Slide {
 
     footer.leftText: "Generations: " + generations
 
+    property bool black: false
     property var cells: []
     property int generations: 0
+    property alias interval: timer.interval
     property var living: []
     property var newBorn: []
     property var newDead: []
@@ -72,8 +74,8 @@ App.Slide {
                 newDead.push(alive)
             }
         }
-        newBorn.forEach(function(index) { cells[index].born(); });
-        newDead.forEach(function(index) { cells[index].died(); });
+        newBorn.forEach(function(index) { cells[index].born(living); });
+        newDead.forEach(function(index) { cells[index].died(living); });
         living = nextgen;
     }
 
@@ -93,23 +95,20 @@ App.Slide {
         return neigh;
     }
 
-    function toroidN(n, constraint) {
-        if (n >= 0) {
-            if (n < constraint) {
-                return n;
+    function toroidN(constraint) {
+        return function(n) {
+            if (n >= 0) {
+                if (n < constraint) {
+                    return n;
+                }
+                return n - constraint;
             }
-            return n - constraint;
-        }
-        return n + constraint;
+            return n + constraint;
+        };
     }
 
-    function toroidX(x) {
-        return toroidN(x, grid.columns);
-    }
-
-    function toroidY(y) {
-        return toroidN(y, grid.rows);
-    }
+    property var toroidX: toroidN(grid.columns)
+    property var toroidY: toroidN(grid.rows)
 
     function populate() {
         living = randomPopulation();
@@ -174,7 +173,7 @@ App.Slide {
 
             property var neighbors
 
-            function born() {
+            function born(living) {
                 // Get the colors of the 3 living neighbors.
                 var colors = [];
                 for (var i = 0; i < 8; i++) {
@@ -185,12 +184,12 @@ App.Slide {
                 color = Qt.rgba(colors[0].r, colors[1].g, colors[2].b, 1.0);
             }
 
-            function died() {
+            function died(living) {
                 color = "White";
             }
 
             function init() {
-                color = randomColor();
+                color = (slide.black) ? "Black" : randomColor();
             }
 
             function reset() {
