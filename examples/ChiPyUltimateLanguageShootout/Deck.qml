@@ -44,8 +44,8 @@ SS.Deck {
         body.font.family: "Roboto Slab"
         textHeight: 14
 
-        body.__centralText.style: Text.Raised
-        body.__centralText.styleColor: "Yellow"
+//        body.__centralText.style: Text.Raised
+//        body.__centralText.styleColor: "Yellow"
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: "White" }
@@ -54,7 +54,6 @@ SS.Deck {
     }
 
     App.Slide {
-        body.margin: margin * 6
         text: "
 * Pick any programming language.
 
@@ -66,6 +65,7 @@ SS.Deck {
 
     App.Slide {
         body.margin: margin * 6
+        textWrap: true
         text: "
 Audience members will vote on their favorite presentation
 and the winner takes home $100s in cash.
@@ -93,6 +93,7 @@ Talks should be approximately %1 minutes.
     App.Slide {
         title: "Your presenter boasted:"
         body.margin: margin * 6
+        textWrap: true
         text: '
 "If you think Python is Pythonic, wait until you see QML
 from the point of view of an experienced Python developer."
@@ -101,7 +102,6 @@ from the point of view of an experienced Python developer."
 
     App.Slide {
         title: "What is Python?"
-        body.margin: margin * 5
         text: "
 Python:
 
@@ -146,7 +146,6 @@ Namespaces are one honking great idea -- let's do more of those!
 
     App.Slide {
         title: "What is QML?"
-        body.margin: margin * 5
         text: "
 QML (Qt Meta Language):
 
@@ -328,8 +327,8 @@ Window {
         body.text: "QML vs PowerPoint"
         body.font.bold: true
         body.font.family: "Roboto Slab"
-        body.__centralText.style: Text.Raised
-        body.__centralText.styleColor: "Yellow"
+//        body.__centralText.style: Text.Raised
+//        body.__centralText.styleColor: "Yellow"
 
         textHeight: 2
 
@@ -352,6 +351,7 @@ Window {
     }
 
     App.Slide {
+        textWrap: true
         text: "
 Patrick Keith O'Brien
 

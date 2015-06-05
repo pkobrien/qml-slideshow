@@ -32,6 +32,7 @@ Rectangle {
     property string text
     property alias textColor: body.textColor
     property alias textHeight: body.textHeight
+    property alias textWrap: body.textWrap
     property string title
 
     property alias date: date

@@ -15,12 +15,24 @@ SS.Box {
     property alias codeFrame: body.__codeFrame
     property alias codeHeight: body.__codeHeight
 
+    property bool textWrap: false
+
     __centralText.horizontalAlignment: (__centralText.lineCount > 1) ?
                                        Text.AlignLeft : Text.AlignHCenter
-    __centralText.width: __content.width
-    __centralText.wrapMode: Text.WordWrap
+//    __centralText.width: __content.width
+//    __centralText.wrapMode: Text.WordWrap
 
     __slide: parent
+
+    Binding on __centralText.width {
+        when: (textWrap)
+        value: __content.width
+    }
+
+    Binding on __centralText.wrapMode {
+        when: (textWrap)
+        value: Text.WordWrap
+    }
 
     onBottomLeftChanged: {
         internal.anchor(bottomLeft, "bottom", "left");

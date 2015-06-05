@@ -41,10 +41,13 @@ Rectangle {
         anchors.verticalCenter: content.verticalCenter
         spacing: __slide.units(box.margin)
 
-        Text {
+        TextEdit {
             id: centralText
 
             font.pixelSize: __slide.units(box.textHeight)
+            readOnly: true
+            selectByKeyboard: true
+            selectByMouse: true
             visible: (text)
         }
 
@@ -67,10 +70,13 @@ Rectangle {
                 anchors.fill: centralCodeFrame
                 anchors.margins: __slide.units(box.margin)
 
-                Text {
+                TextEdit {
                     id: centralCode
 
                     font.pixelSize: __slide.units(box.__codeHeight)
+                    readOnly: true
+                    selectByKeyboard: true
+                    selectByMouse: true
                     visible: (text)
                 }
             }
